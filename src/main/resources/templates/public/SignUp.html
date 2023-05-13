@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html
+   lang="en"
+   xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <meta
+         http-equiv="X-UA-Compatible"
+         content="IE=edge" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1.0" />
+      <!-- file css -->
+      <link
+         rel="stylesheet"
+         href="/css/SignUp.css" />
+      <!-- boostrap css -->
+      <link
+         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+         rel="stylesheet"
+         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+         crossorigin="anonymous" />
+      <!-- icon awesome -->
+      <link
+         rel="stylesheet"
+         href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
+      <title>Đăng Ký</title>
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <form
+            action="#"
+            id="formRegister">
+            <div class="h5 font-weight-bold text-center mb-3">Registration</div>
+            <div class="form-group d-flex align-items-center">
+               <div class="icon"><span class="far fa-user"></span></div>
+               <input
+                  id="firstname"
+                  type="text"
+                  class="form-control"
+                  placeholder="First Name"
+                  name="firstname" />
+            </div>
+            <div class="form-group d-flex align-items-center">
+               <div class="icon"><span class="fas fa-user-edit"></span></div>
+               <input
+                  id="lastname"
+                  type="text"
+                  class="form-control"
+                  placeholder="Last Name"
+                  name="lastname" />
+            </div>
+            <div class="form-group d-flex align-items-center">
+               <div class="icon"><span class="far fa-envelope"></span></div>
+               <input
+                  id="email"
+                  type="email"
+                  class="form-control"
+                  placeholder="Email"
+                  name="email" />
+            </div>
+            <div class="form-group d-flex align-items-center">
+               <div class="icon"><span class="fas fa-key"></span></div>
+               <input
+                  id="password"
+                  type="password"
+                  class="form-control"
+                  placeholder="Password"
+                  name="password" />
+               <div class="icon btn"><span class="fas fa-eye-slash"></span></div>
+            </div>
+            <div
+               class="btn btn-primary mb-3"
+               id="submit">
+               Signup
+            </div>
+         </form>
+      </div>
+   </body>
+   <!-- jquery -->
+   <script
+      src="https://code.jquery.com/jquery-3.6.3.js"
+      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+      crossorigin="anonymous"></script>
+   <!-- sweetalert -->
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   <!-- code js -->
+   <script>
+      $(document).ready(function () {
+         $('#submit').click(function () {
+            register();
+         });
+      });
+
+      let firstname = document.getElementById('firstname');
+      let lastname = document.getElementById('lastname');
+      let email = document.getElementById('email');
+      let password = document.getElementById('password');
+      let regex = /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm;
+
+      firstname.addEventListener('blur', function () {
+         if (firstname.value == '') {
+            swal('Họ không được trống', '', 'error');
+         }
+      });
+      lastname.addEventListener('blur', function () {
+         if (lastname.value == '') {
+            swal('Tên không được trống', '', 'error');
+         }
+      });
+      email.addEventListener('blur', function () {
+         if (email.value == '') {
+            swal('Email không được trống', '', 'error');
+         } else if (!regex.test(email.value)) {
+            swal('Email không hợp lệ', '', 'error');
+         }
+      });
+
+      password.addEventListener('blur', function () {
+         if (password.value == '') {
+            swal('Mật khẩu không được trống', '', 'error');
+         }
+      });
+
+      function register() {
+         request = {
+            firstName: firstname.value,
+            lastName: lastname.value,
+            email: email.value,
+            password: password.value,
+         };
+         let myJSON = JSON.stringify(request);
+         console.log(request);
+         $.ajax({
+            url: '/api/auth/register',
+            type: 'POST',
+            data: myJSON,
+            contentType: 'application/json',
+            success: function (data) {
+               swal('Đăng ký thành công!', '', 'success');
+
+               let swalbuttoconfirm = document.getElementsByClassName('swal-button--confirm');
+               swalbuttoconfirm[0].addEventListener('click', function () {
+                  window.location.href = '/login';
+               });
+            },
+            error: function (data) {
+               swal('Email đã tồn tại!', '', 'error');
+
+               setInterval(function () {
+                  window.location.href = '/register';
+               }, 1000);
+            },
+         });
+      }
+
+      let iconEye = document.querySelector('.fa-eye-slash');
+      iconEye.addEventListener('click', function () {
+         let inputPassword = document.getElementById('password');
+         if (inputPassword.type == 'password') {
+            inputPassword.type = 'text';
+            iconEye.classList.remove('fa-eye-slash');
+            iconEye.classList.add('fa-eye');
+         } else {
+            inputPassword.type = 'password';
+            iconEye.classList.remove('fa-eye');
+            iconEye.classList.add('fa-eye-slash');
+         }
+      });
+
+      var element = document.getElementById('formRegister');
+      element.addEventListener('keypress', function (event) {
+         if (event.key === 'Enter') {
+            event.preventDefault();
+            register();
+         }
+      });
+   </script>
+</html>

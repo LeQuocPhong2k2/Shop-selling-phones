@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html
+   xmlns:th="http://www.thymeleaf.org"
+   lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta
+         http-equiv="X-UA-Compatible"
+         content="IE=edge" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1.0" />
+      <title>Header</title>
+      <!-- file css -->
+      <link
+         rel="stylesheet"
+         href="/css/header.css" />
+      <!-- icon css -->
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+      <!-- boostrap css -->
+      <link
+         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+         rel="stylesheet"
+         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+         crossorigin="anonymous" />
+   </head>
+
+   <body>
+      <div class="container-fluid header">
+         <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+               <a
+                  class="navbar-brand"
+                  href="#">
+                  <img
+                     src="/img/iconFPT.png"
+                     alt="" />
+               </a>
+               <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+               </button>
+               <div
+                  class="collapse navbar-collapse"
+                  id="navbarSupportedContent">
+                  <form
+                     class="d-flex col-5 m-0"
+                     action="/home/search"
+                     method="GET">
+                     <input
+                        class="form-control m-0"
+                        style="border-radius: 0px; border-bottom-left-radius: 2px; border-top-left-radius: 2px"
+                        type="search"
+                        placeholder="Nhập tên điện thoại, máy tính, phụ kiện... cần tìm"
+                        aria-label="Search"
+                        name="searchVal" />
+                     <button
+                        style="display: flex; justify-content: center; align-items: center; border-radius: 0px; border-bottom-right-radius: 2px; border-top-right-radius: 2px"
+                        class="btn btn-outline-success"
+                        type="submit">
+                        <i
+                           class="fa fa-search"
+                           aria-hidden="true"></i>
+                     </button>
+                  </form>
+
+                  <ul
+                     class="navbar-nav m-2 fs-hdmn"
+                     style="display: flex; justify-content: center; align-items: center; max-height: 100%">
+                     <li class="nav-item text-center m-2">
+                        <a class="nav-link"
+                           ><i
+                              class="fa fa-newspaper-o"
+                              aria-hidden="true"></i
+                        ></a>
+                        <a class="nav-link fw-normal lh-1">Thông tin hay</a>
+                     </li>
+                     <li class="nav-item text-center m-2">
+                        <a class="nav-link"
+                           ><i
+                              class="fa fa-file-text"
+                              aria-hidden="true"></i
+                        ></a>
+                        <a
+                           class="nav-link fw-normal lh-1"
+                           href="#"
+                           >Thanh toán & tiện ích</a
+                        >
+                     </li>
+
+                     <li class="nav-item text-center m-2">
+                        <a class="nav-link d-flex justify-content-center lh-1 m-0 p-0 mt-0">
+                           <i
+                              class="fa fa-user-circle-o"
+                              aria-hidden="true"></i>
+                           <!-- <img src="/img/icon-login.png" class="rounded" style="max-width: 18%;"> -->
+                        </a>
+                        <div
+                           class="dropdown p-0 m-0"
+                           th:if="${account != null}">
+                           <button
+                              class="btn btn-secondary dropdown-toggle p-0 m-0"
+                              type="button"
+                              id="dropdownMenuButton1"
+                              style="background-color: #cd1818; border: none"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
+                              th:text="${account.email}"></button>
+                           <ul
+                              class="dropdown-menu h-text"
+                              aria-labelledby="dropdownMenuButton1">
+                              <li th:if="${#strings.equals(account.role, 'ADMIN')}">
+                                 <a
+                                    class="dropdown-item text-center"
+                                    href="/admin"
+                                    style="color: #181818 !important"
+                                    >Admin</a
+                                 >
+                              </li>
+                              <li>
+                                 <a
+                                    class="dropdown-item text-center"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal"
+                                    href="#"
+                                    style="color: #181818 !important"
+                                    >Xem thông tin</a
+                                 >
+                              </li>
+                              <li>
+                                 <a
+                                    class="dropdown-item text-center"
+                                    th:herf="@{/logout}">
+                                    <form
+                                       th:action="@{/logout}"
+                                       method="post">
+                                       <input
+                                          type="submit"
+                                          value="Đăng xuất"
+                                          style="color: #181818 !important; border: none; background-color: #ffff" />
+                                    </form>
+                                 </a>
+                              </li>
+                           </ul>
+                        </div>
+                        <div
+                           class="dropdown p-0 m-0"
+                           th:if="${account == null}">
+                           <button
+                              class="btn btn-secondary dropdown-toggle p-0 m-0"
+                              type="button"
+                              id="dropdownMenuButton1"
+                              style="background-color: #cd1818; border: none"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false">
+                              Tài khoản của tôi
+                           </button>
+                           <ul
+                              class="dropdown-menu h-text"
+                              aria-labelledby="dropdownMenuButton1">
+                              <li>
+                                 <a
+                                    class="dropdown-item text-center"
+                                    href="/login"
+                                    style="color: #181818 !important"
+                                    >Đăng nhập</a
+                                 >
+                              </li>
+                           </ul>
+                        </div>
+                     </li>
+                     <li class="nav-item text-center m-2">
+                        <a class="nav-link"
+                           ><i
+                              class="fa fa-shopping-cart"
+                              aria-hidden="true"></i
+                        ></a>
+                        <a
+                           class="nav-link fw-normal lh-1"
+                           id="btn-card"
+                           href="/cart"
+                           >Giỏ hàng</a
+                        >
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </nav>
+      </div>
+
+      <!-- Modal infor user -->
+      <div
+         class="modal fade"
+         id="exampleModal"
+         tabindex="-1"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true"
+         th:if="${account != null}">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5
+                     class="modal-title"
+                     id="exampleModalLabel">
+                     Thông tin tài khoản
+                  </h5>
+                  <button
+                     type="button"
+                     class="btn-close"
+                     data-bs-dismiss="modal"
+                     aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                  <div class="d-flex p-0 m-0 justify-content-center p-2">
+                     <div class="col-4">
+                        <i
+                           style="cursor: pointer"
+                           class="fas fa-user"
+                           th:text="${' '+account.firstName +' '+ account.lastName}"
+                           data-infor="${account.id}"></i>
+                     </div>
+                     <div class="col-4">
+                        <input
+                           class="ip-edit-infor rounded-2"
+                           type="text"
+                           name="username"
+                           style="max-width: 100%" />
+                     </div>
+                     <div class="col-4 text-center">
+                        <i
+                           style="cursor: pointer"
+                           class="far fa-edit fa-edit-infor"></i>
+                     </div>
+                  </div>
+                  <div class="d-flex p-0 m-0 justify-content-center p-2">
+                     <div class="col-4">
+                        <i
+                           style="cursor: pointer"
+                           class="fas fa-envelope"
+                           th:text="${' '+account.email}"></i>
+                     </div>
+                     <div class="col-4">
+                        <input
+                           class="ip-edit-infor rounded-2"
+                           type="text"
+                           name="email"
+                           style="max-width: 100%" />
+                     </div>
+                     <div class="col-4 text-center">
+                        <i
+                           style="cursor: pointer"
+                           class="far fa-edit fa-edit-infor"></i>
+                     </div>
+                  </div>
+                  <div class="d-flex p-0 m-0 justify-content-center p-2">
+                     <div class="col-4">
+                        <i
+                           style="cursor: pointer"
+                           class="fas fa-key">
+                           **************</i
+                        >
+                     </div>
+                     <div class="col-4">
+                        <input
+                           class="ip-edit-infor rounded-2"
+                           type="text"
+                           name="password"
+                           style="max-width: 100%" />
+                     </div>
+                     <div class="col-4 text-center">
+                        <i
+                           style="cursor: pointer"
+                           class="far fa-edit fa-edit-infor"></i>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button
+                     type="button"
+                     class="btn btn-secondary"
+                     data-bs-dismiss="modal">
+                     Close
+                  </button>
+                  <button
+                     type="button"
+                     class="btn btn-primary">
+                     Save changes
+                  </button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end modal -->
+      <div class="container-fluid h-bottom">
+         <ul>
+            <li>
+               <a
+                  href="/san-pham/dien-thoai"
+                  class="nav-menu">
+                  <i
+                     class="fa fa-mobile"
+                     aria-hidden="true"></i
+                  >&ensp;ĐIỆNTHOẠI
+               </a>
+            </li>
+            <li>
+               <a
+                  href="#"
+                  class="nav-menu">
+                  <i
+                     class="fa fa-table"
+                     aria-hidden="true"></i
+                  >&ensp;TABLET
+               </a>
+            </li>
+            <li>
+               <a
+                  href="#"
+                  class="nav-menu">
+                  <i
+                     class="fa fa-headphones"
+                     aria-hidden="true"></i
+                  >&ensp;PHỤ KIỆN
+               </a>
+            </li>
+            <li>
+               <a
+                  href="#"
+                  class="nav-menu">
+                  <i
+                     class="fa fa-repeat"
+                     aria-hidden="true"></i
+                  >&ensp;MÁY CỦ GIÁ RẺ
+               </a>
+            </li>
+            <li>
+               <a
+                  href="#"
+                  class="nav-menu">
+                  <i
+                     class="fa fa-id-card"
+                     aria-hidden="true"></i
+                  >&ensp;SIM & THẺ
+               </a>
+            </li>
+            <li>
+               <a
+                  href="#"
+                  class="nav-menu">
+                  <i
+                     class="fa fa-gift"
+                     aria-hidden="true"></i
+                  >&ensp;KHUYẾN MÃI
+               </a>
+            </li>
+         </ul>
+      </div>
+
+      <!-- nav hover dien thoai -->
+      <div class="container hover-dienthoai shadow p-3 mb-5 bg-body rounded">
+         <div class="row">
+            <div class="col-4">
+               <span style="font-size: 1vw"><strong>HÃNG SẢN XUẤT</strong></span>
+               <table class="table table-borderless table-navhover-dienthoai">
+                  <thead>
+                     <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td
+                           class="item-navhover-hsx"
+                           value="apple">
+                           <a href="#">Apple(iPhone)</a>
+                        </td>
+                        <td
+                           class="item-navhover-hsx"
+                           value="samsung">
+                           <a href="#">Samsung</a>
+                        </td>
+                        <td
+                           class="item-navhover-hsx"
+                           value="oppo">
+                           <a href="#">OPPO</a>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td
+                           class="item-navhover-hsx"
+                           value="xiaomi">
+                           <a href="#">Xiaomi</a>
+                        </td>
+                        <td
+                           class="item-navhover-hsx"
+                           value="vivo">
+                           <a href="#">Vivo</a>
+                        </td>
+                        <td
+                           class="item-navhover-hsx"
+                           value="asus">
+                           <a href="#">Asus</a>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td
+                           class="item-navhover-hsx"
+                           value="nokia">
+                           <a href="#">Nokia</a>
+                        </td>
+                        <td
+                           class="item-navhover-hsx"
+                           value="masstel">
+                           <a href="#">Masstel</a>
+                        </td>
+                        <td
+                           class="item-navhover-hsx"
+                           value="realme">
+                           <a href="#">Realme</a>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="col-4">
+               <span><strong>MỨC GIÁ</strong></span>
+               <table class="table table-borderless">
+                  <thead>
+                     <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td
+                           class="item-navhover-price"
+                           data-price="2-4">
+                           <a href="#">Từ 2-4 triệu</a>
+                        </td>
+                        <td
+                           class="item-navhover-price"
+                           data-price="4-7">
+                           <a href="#">Từ 4-7 triệu</a>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td
+                           class="item-navhover-price"
+                           data-price="7-13">
+                           <a href="#">Từ 7-13 triệu</a>
+                        </td>
+                        <td
+                           class="item-navhover-price"
+                           data-price="13-50">
+                           <a href="#">Trên 13 triệu</a>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+            <div class="col-4">
+               <span><strong>BÁN CHẠY NHÂT</strong></span>
+               <table class="table table-borderless">
+                  <thead>
+                     <tr>
+                        <th scope="col"></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>
+                           <a href="">
+                              <img
+                                 src="https://images.fpt.shop/unsafe/fit-in/585x390/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2022/12/5/638058527736303163_ipad-pro-11-m1-wifi-bac-1.jpg"
+                                 alt=""
+                                 style="max-width: 50%" />
+                              <br />
+                              <a href="">iPad Pro 11 2021 M1 Wi-Fi 128GB</a> <br />
+                              <span>19.999.000₫</span>
+                           </a>
+                        </td>
+                        <td>
+                           <a href="">
+                              <img
+                                 src="https://images.fpt.shop/unsafe/fit-in/585x390/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2022/3/21/637834691340604790_samsung-galaxy-a13-den-1.jpg"
+                                 alt=""
+                                 style="max-width: 50%" />
+                              <br />
+                              <a href="">Samsung Galaxy Tab S6 Lite 2022</a> <br />
+                              <span>19.999.000₫</span>
+                           </a>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </body>
+
+   <!--block script-->
+   <script
+      src="https://code.jquery.com/jquery-3.6.3.js"
+      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+      crossorigin="anonymous"></script>
+   <!-- boostrap js -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+   <script th:inline="javascript"></script>
+</html>

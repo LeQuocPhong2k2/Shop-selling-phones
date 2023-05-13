@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Reseting */
+
+:root {
+   --text-color: #212529;
+}
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'Poppins', sans-serif;
+}
+body {
+   margin: 0;
+   padding: 0;
+   background-image: linear-gradient(rgba(112, 109, 111, 0.2), rgba(112, 109, 111, 0.2)), url(/img/Vu4UZU3VKXXqNayCfiLchG.jpg);
+   background-size: cover;
+   box-sizing: border-box;
+   font-weight: 300;
+}
+
+#particles-js {
+   height: 100%;
+}
+
+.loginBox {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: 350px;
+   min-height: 200px;
+   background: #000000;
+   border-radius: 10px;
+   padding: 40px;
+   box-sizing: border-box;
+   opacity: 0.9;
+   box-shadow: 40px 30px 2px #4c4b4b;
+}
+
+.user {
+   margin: 0 auto;
+   display: block;
+   margin-bottom: 20px;
+}
+
+h3 {
+   margin: 0;
+   padding: 0 0 20px;
+   color: #59238f;
+   text-align: center;
+}
+
+.loginBox input {
+   width: 100%;
+   margin-bottom: 20px;
+   border: none !important;
+}
+
+.loginBox input[type='text'],
+.loginBox input[type='password'] {
+   border: none;
+   border-bottom: 2px solid #262626;
+   outline: none;
+   height: 40px;
+   color: #fff;
+   background: transparent;
+   font-size: 16px;
+   padding-left: 20px;
+   box-sizing: border-box;
+}
+
+.loginBox input[type='text']:hover,
+.loginBox input[type='password']:hover {
+   color: #42f3fa;
+   border: 1px solid #42f3fa;
+   box-shadow: 0 0 5px rgba(0, 255, 0, 0.3), 0 0 10px rgba(0, 255, 0, 0.2), 0 0 15px rgba(0, 255, 0, 0.1), 0 2px 0 black;
+}
+
+.loginBox input[type='text']:focus,
+.loginBox input[type='password']:focus {
+   border-bottom: 2px solid #42f3fa;
+}
+
+.inputBox {
+   position: relative;
+}
+
+.inputBox span {
+   position: absolute;
+   top: 10px;
+   color: #262626;
+}
+
+.loginBox input[type='button'] {
+   border: none;
+   outline: none;
+   height: 40px;
+   font-size: 16px;
+   background: #59238f;
+   color: #fff;
+   border-radius: 20px;
+   cursor: pointer;
+   transition: all 0.5s ease;
+}
+
+.loginBox a {
+   color: #262626;
+   font-size: 14px;
+   font-weight: bold;
+   text-decoration: none;
+   text-align: center;
+   display: block;
+}
+
+a:hover {
+   color: #00ffff;
+}
+
+p {
+   color: #0000ff;
+}
+
+.box {
+   width: 20vh;
+   height: 20vh;
+   background-color: #aa87f1;
+   position: absolute;
+   top: 5%;
+   left: 20%;
+   border-radius: 20px;
+   border-top-right-radius: 40px;
+   border-bottom-left-radius: 40px;
+   box-shadow: 10px 10px 10px rgb(183, 247, 128);
+   opacity: 0.8;
+   transition: all 0.5s ease;
+}
+
+.box-two {
+   width: 10vh;
+   height: 10vh;
+   background-color: #aa87f1;
+   position: absolute;
+   bottom: 4%;
+   right: 25%;
+   border-radius: 10px;
+   border-top-right-radius: 25px;
+   border-bottom-left-radius: 25px;
+   box-shadow: 5px 5px 5px rgb(183, 247, 128);
+   opacity: 0.8;
+   transition: all 0.5s ease;
+}
+
+/* .line {
+    position: absolute;
+    top: 8%;
+    left: 37%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    min-height: 15px;
+    background: #cf2929;
+    border-radius: 20px;
+    animation: move 5s ease-out infinite;
+    animation-direction: alternate;
+    opacity: 0.8;
+}
+.line2 {
+    position: absolute;
+    top: 8%;
+    left: 37%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    min-height: 15px;
+    background: #50bd12;
+    border-radius: 20px;
+    animation: move2 5s ease-out infinite;
+    animation-direction: alternate;
+    opacity: 0.8;
+}
+
+@keyframes move {
+    0% {
+        transform: perspective(100px) rotateX(0deg);
+    }
+
+    50% {
+        transform: perspective(100px) rotateX(200deg);
+    }
+
+    0% {
+        transform: perspective(100px) rotateZ(360deg);
+    }
+}
+@keyframes move2 {
+    0% {
+        transform: perspective(100px) rotateX(0deg);
+    }
+
+    50% {
+        transform: perspective(100px) rotateX(-100deg);
+    }
+
+    0% {
+        transform: perspective(100px) rotateZ(-180deg);
+    }
+} */
+
+.loader {
+   width: 100px;
+   height: 100px;
+   position: relative;
+}
+
+.drop1,
+.drop2 {
+   height: 20px;
+   width: 20px;
+   border-radius: 100%;
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+}
+
+.drop1 {
+   background-color: #1133f5;
+   left: 10%;
+   animation: anim1 ease-in-out infinite 2.5s;
+}
+
+.drop2 {
+   background-color: rgb(240, 170, 65);
+   right: 10%;
+   animation: anim2 ease-in-out infinite 2.5s;
+}
+
+@keyframes anim1 {
+   0% {
+      left: 10%;
+   }
+
+   50% {
+      left: 45%;
+   }
+
+   100% {
+      left: 10%;
+   }
+}
+
+@keyframes anim2 {
+   0% {
+      right: 10%;
+   }
+
+   50% {
+      right: 45%;
+   }
+
+   100% {
+      right: 10%;
+   }
+}

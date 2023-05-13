@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html
+   lang="en"
+   xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <meta
+         http-equiv="X-UA-Compatible"
+         content="IE=edge" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1.0" />
+      <title>Thêm sản phẩm</title>
+      <!-- bootstrap css -->
+      <link
+         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+         rel="stylesheet"
+         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+         crossorigin="anonymous" />
+      <!-- icon awesome -->
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+         crossorigin="anonymous"
+         referrerpolicy="no-referrer" />
+   </head>
+   <body>
+      <style>
+         #btnAddNcc {
+            font-weight: 600;
+         }
+         #btnAddNcc:hover {
+            background-color: #ccc;
+         }
+         #btnAddNcc:active {
+            background-color: #cccccc88;
+         }
+         #btnSave {
+            background-color: #0d6efd;
+            color: white;
+            font-weight: 600;
+         }
+         .table input:focus {
+            outline: none;
+         }
+      </style>
+      <div th:include="admin/Header.html"></div>
+      <div class="container mt-4">
+         <div class="row mt-4">
+            <div class="d-flex shadow p-3 mb-5 bg-body rounded justify-content-between align-items-center">
+               <div class="col text-center">
+                  <ul class="list-group list-group-horizontal">
+                     <li class="list-group-item">
+                        <select
+                           id="selectNcc"
+                           class="form-select"
+                           aria-label="Default select example">
+                           <option selected>Chọn nhà cung cấp</option>
+                           <option value="">CTY TNHH CTPV</option>
+                           <option
+                              value="addNcc"
+                              class="text-primary">
+                              + Thêm nhà cung cấp
+                           </option>
+                        </select>
+                     </li>
+                     <li class="list-group-item">
+                        <select
+                           class="form-select"
+                           aria-label="Default select example">
+                           <option selected>Chọn thương hiệu</option>
+                           <option value="1">Apple</option>
+                           <option
+                              value=""
+                              class="text-primary">
+                              + Thêm thương hiệu
+                           </option>
+                        </select>
+                     </li>
+                     <li class="list-group-item">
+                        <select
+                           class="form-select"
+                           aria-label="Default select example">
+                           <option selected>Chọn hạng mục</option>
+                           <option value="1">Điện thoại</option>
+                           <option
+                              value=""
+                              class="text-primary">
+                              + Thêm hạng mục
+                           </option>
+                        </select>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <span class="text-dark p-0 mb-2"><i class="fa-solid fa-mobile-button"></i>Hạng mục điện thoại</span>
+            <table class="table">
+               <thead class="bg-dark text-white">
+                  <tr>
+                     <th scope="col">Tên sản phẩm</th>
+                     <th scope="col">Hệ điều hành</th>
+                     <th scope="col">Màn hình</th>
+                     <th scope="col">Ram</th>
+                     <th scope="col">Rom</th>
+                     <th scope="col">Hình ảnh</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>
+                        <input
+                           class="p-1 border-0 bg-light"
+                           placeholder="Tên sản phẩm"
+                           type="text" />
+                     </td>
+                     <td>
+                        <input
+                           class="p-1 border-0 bg-light"
+                           placeholder="Hệ điều hành"
+                           type="text" />
+                     </td>
+                     <td>
+                        <input
+                           class="p-1 border-0 bg-light"
+                           placeholder="Màn hình"
+                           type="text" />
+                     </td>
+                     <td>
+                        <select class="p-1 bg-light rounded">
+                           <option selected>2 GB</option>
+                           <option value="1">4 GB</option>
+                           <option value="2">6 GB</option>
+                           <option value="3">8 GB</option>
+                           <option value="3">816 GB</option>
+                        </select>
+                     </td>
+                     <td>
+                        <select class="p-1 bg-light rounded">
+                           <option selected>64 GB</option>
+                           <option value="1">128 GB</option>
+                           <option value="2">256 GB</option>
+                           <option value="3">512 GB</option>
+                           <option value="3">1024 GB</option>
+                        </select>
+                     </td>
+                     <td>
+                        <input
+                           class="p-1 border-0 bg-light"
+                           placeholder="Hình ảnh"
+                           type="text" />
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            <button
+               id="btnSave"
+               class="p-2 border-0 rounded">
+               <i class="fa-solid fa-circle-plus p-1"></i>Thêm sản phẩm
+            </button>
+         </div>
+      </div>
+      <!-- modal thêm nhà cung cấp -->
+      <div
+         class="modal"
+         tabindex="-1">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title">Thêm nhà cung cấp</h5>
+                  <button
+                     type="button"
+                     class="btn-close"
+                     data-bs-dismiss="modal"
+                     aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                  <p>Modal body text goes here.</p>
+               </div>
+               <div class="modal-footer">
+                  <button
+                     type="button"
+                     class="btn btn-secondary"
+                     data-bs-dismiss="modal">
+                     Close
+                  </button>
+                  <button
+                     type="button"
+                     class="btn btn-primary">
+                     Save changes
+                  </button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+   <!-- bootstrap js -->
+   <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script>
+   <!-- query js -->
+   <script
+      src="https://code.jquery.com/jquery-3.7.0.js"
+      integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+      crossorigin="anonymous"></script>
+   <!-- file js -->
+   <script src="js/admin/AddProduct.js"></script>
+   <script>
+      $(document).ready(function () {
+         $('.modal').modal('show');
+      });
+   </script>
+</html>

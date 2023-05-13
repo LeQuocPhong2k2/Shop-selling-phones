@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html
+   lang="en"
+   xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <meta
+         http-equiv="X-UA-Compatible"
+         content="IE=edge" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1.0" />
+      <title>Trang chủ</title>
+
+      <link
+         rel="shortcut icon"
+         href="/img/icon-login.png" />
+      <!-- file css -->
+      <link
+         rel="stylesheet"
+         href="/css/index.css" />
+      <!-- icon awesome -->
+      <link
+         rel="stylesheet"
+         href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
+      <!-- spslide-css -->
+      <link
+         rel="stylesheet"
+         href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
+      <!-- font -->
+      <link
+         rel="preconnect"
+         href="https://fonts.googleapis.com" />
+      <link
+         rel="preconnect"
+         href="https://fonts.gstatic.com"
+         crossorigin />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap"
+         rel="stylesheet" />
+   </head>
+
+   <body>
+      <!-- header -->
+      <div th:include="user/header.html"></div>
+      <!-- breadcrumb -->
+      <div class="container">
+         <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+               <li class="breadcrumb-item"><a href="#">Home</a></li>
+               <li
+                  class="breadcrumb-item active"
+                  aria-current="page"></li>
+            </ol>
+         </nav>
+      </div>
+      <!-- slide -->
+      <div class="container">
+         <div class="row text-center">
+            <div class="col-8 slide-r-parent shadow bg-body rounded mb-5">
+               <div class="row">
+                  <div class="slide">
+                     <swiper-container
+                        class="mySwiper"
+                        pagination="true"
+                        pagination-clickable="true"
+                        navigation="true"
+                        space-between="30"
+                        centered-slides="true"
+                        autoplay-delay="2500"
+                        autoplay-disable-on-interaction="false">
+                        <swiper-slide>
+                           <img
+                              src="https://images.fpt.shop/unsafe/fit-in/1200x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/2/17/638122418914846270_F-C1_1200x300@2x.png"
+                              alt="" />
+                        </swiper-slide>
+                        <swiper-slide>
+                           <img
+                              src="https://images.fpt.shop/unsafe/fit-in/1200x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/2/1/638108673553993107_F-C1_1200x300@2x.png"
+                              alt="" />
+                        </swiper-slide>
+                        <swiper-slide>
+                           <img
+                              src="https://images.fpt.shop/unsafe/fit-in/1200x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/2/23/638127484687826549_F-C1_1200x300.png"
+                              alt="" />
+                        </swiper-slide>
+                        <swiper-slide>
+                           <img
+                              src="https://images.fpt.shop/unsafe/fit-in/1200x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/1/31/638108014497018540_F-C1_1200x300-1.jpg"
+                              alt="" />
+                        </swiper-slide>
+                        <swiper-slide>
+                           <img
+                              src="https://images.fpt.shop/unsafe/fit-in/1200x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/2/15/638120822477712377_F-C1_1200x300.png"
+                              alt="" />
+                        </swiper-slide>
+                     </swiper-container>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col text-center pt-4">
+                     <p class="">Xiaomi 13 Lite giá từ 10.690.000đ</p>
+                  </div>
+                  <div class="col text-center pt-4">
+                     <p class="">iPhone 14 pro max giảm đến 8.5 triệu</p>
+                  </div>
+                  <div class="col text-center pt-4">
+                     <p class="">Reno8 T Series giá từ 8.490.000đ</p>
+                  </div>
+                  <div class="col text-center pt-4">
+                     <p class="">Đặt trước Robot Ecovacs N10 ngay</p>
+                  </div>
+               </div>
+            </div>
+            <div class="col-4 col-md-4 shadow p-3 mb-5 bg-body rounded">
+               <div class="row p-2">
+                  <img
+                     src="https://images.fpt.shop/unsafe/fit-in/385x100/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/2/1/638108452578436423_F-H2_385x100.png"
+                     alt="" />
+               </div>
+               <div class="row p-2">
+                  <img
+                     src="https://images.fpt.shop/unsafe/fit-in/385x100/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/3/1/638132630123112703_F-H2_385x100.png"
+                     alt="" />
+               </div>
+               <div class="row p-0 m-0">
+                  <div class="row p-0 m-0 w-100">
+                     <div class="col-5 w-50">
+                        <h5 style="color: #6c757d; font-size: 15px; font-weight: 700; cursor: pointer; float: left">Tin khuyến mãi</h5>
+                     </div>
+                     <div class="col-5 w-50 see-all-new">
+                        <a
+                           class="float-end fs-6"
+                           href=""
+                           style="cursor: pointer"
+                           >Xem tất cả</a
+                        >
+                     </div>
+                  </div>
+                  <div class="row p-0 m-0 w-100">
+                     <ul style="display: flex; list-style: none">
+                        <li style="border: 2px solid #ccc; border-radius: 4px; cursor: pointer">
+                           <img
+                              src="https://images.fpt.shop/unsafe/fit-in/70x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/images/2015/PhuongMT5/laptop_2.png"
+                              alt="" />
+                        </li>
+                        <li
+                           class="text-center p-1 pt-2"
+                           style="cursor: pointer; font-weight: 600; font-size: 0.9vw">
+                           Mua laptop Online giảm thêm đến 1 triệu
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="row p-0 m-0 w-100">
+                     <ul style="display: flex; list-style: none">
+                        <li style="border: 2px solid #ccc; border-radius: 4px; cursor: pointer">
+                           <img
+                              src="https://images.fpt.shop/unsafe/fit-in/70x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/images/2015/PhuongMT5/HP.png"
+                              alt="" />
+                        </li>
+                        <li
+                           class="text-center p-1 pt-2"
+                           style="cursor: pointer; font-weight: 600; font-size: 0.9vw">
+                           Mua laptop Online giảm thêm đến 1 triệu
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- content -->
+      <div class="content">
+         <!-- cate-box -->
+         <div class="container p-2 cate">
+            <div class="row text-center shadow p-3 mb-5 bg-body rounded">
+               <div class="col-4 col-lg-2 border text-center p-4 cate-item">
+                  <div
+                     class="row p-4 rounded-circle m-0"
+                     style="background-color: #f4f4f4">
+                     <img
+                        style="max-width: 100%"
+                        src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/fptshop.com.vn/Uploads/images/2015/img-dienthoai-desk.png"
+                        alt="" />
+                  </div>
+                  <div class="row">
+                     <p class="text-center">Điện thoại</p>
+                  </div>
+               </div>
+               <div class="col-4 col-lg-2 border text-center p-4 cate-item">
+                  <div
+                     class="row p-4 rounded-circle m-0"
+                     style="background-color: #f4f4f4">
+                     <img
+                        style="max-width: 100%"
+                        src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/fptshop.com.vn/Uploads/images/2015/icon-mtb-desk.png"
+                        alt="" />
+                  </div>
+                  <div class="row">
+                     <p class="text-center">Máy tính bảng</p>
+                  </div>
+               </div>
+               <div class="col-4 col-lg-2 border text-center p-4 cate-item">
+                  <div
+                     class="row p-4 rounded-circle m-0"
+                     style="background-color: #f4f4f4">
+                     <img
+                        style="max-width: 100%"
+                        src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/fptshop.com.vn/Uploads/images/2022/iconcate/icon-accessories.png"
+                        alt="" />
+                  </div>
+                  <div class="row">
+                     <p class="text-center">Phụ kiện</p>
+                  </div>
+               </div>
+               <div class="col-4 col-lg-2 border text-center p-4 cate-item">
+                  <div
+                     class="row p-4 rounded-circle m-0"
+                     style="background-color: #f4f4f4">
+                     <img
+                        style="max-width: 100%"
+                        src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/fptshop.com.vn/Uploads/images/2022/iconcate/icon-smartwatch.png"
+                        alt="" />
+                  </div>
+                  <div class="row">
+                     <p class="text-center">Đồng hồ thông minh</p>
+                  </div>
+               </div>
+               <div class="col-4 col-lg-2 border text-center p-4 cate-item">
+                  <div
+                     class="row p-4 rounded-circle m-0"
+                     style="background-color: #f4f4f4">
+                     <img
+                        style="max-width: 100%"
+                        src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/fptshop.com.vn/Uploads/images/2015/Other/icon-samsung.png"
+                        alt="" />
+                  </div>
+                  <div class="row">
+                     <p class="text-center">Samsung</p>
+                  </div>
+               </div>
+               <div class="col-4 col-lg-2 border text-center p-4 cate-item">
+                  <div
+                     class="row p-4 rounded-circle m-0"
+                     style="background-color: #f4f4f4">
+                     <img
+                        style="max-width: 100%"
+                        src="https://images.fpt.shop/unsafe/fit-in/60x60/filters:quality(90):fill(transparent)/fptshop.com.vn/Uploads/images/2022/iconcate/icon-tcdm.png"
+                        alt="" />
+                  </div>
+                  <div class="row">
+                     <p class="text-center">Máy củ</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- abs -->
+         <div class="container pb-4">
+            <div class="row text-center rounded-3">
+               <img
+                  style="cursor: pointer; padding-left: 0; padding-right: 0; border-radius: 10px"
+                  class="w-100 rounded-full"
+                  src="https://images.fpt.shop/unsafe/fit-in/1200x100/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/3/7/638138286861746844_F-H7_1200x100.png"
+                  alt="" />
+            </div>
+         </div>
+         <!-- khuyến mãi hot -->
+         <div class="container mt-4">
+            <div class="row">
+               <div class="col shadow p-3 mb-5 bg-body rounded">
+                  <div class="row">
+                     <div class="d-flex m-0">
+                        <i
+                           class="fab fa-hotjar fs-5"
+                           style="color: #cd1818"></i>
+                        <h2
+                           class="fs-5"
+                           style="color: #cd1818; font-weight: 600; float: left">
+                           KHUYẾN MÃI HOT
+                        </h2>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <section
+                        id="image-carousel"
+                        class="splide"
+                        aria-label="Beautiful Images">
+                        <div class="splide__track pb-4">
+                           <ul class="splide__list">
+                              <li
+                                 class="splide__slide"
+                                 th:each="item :${sanphams}">
+                                 <div class="card pb-4">
+                                    <img
+                                       th:src="@{${item.img[0]}}"
+                                       style="max-width: 80%"
+                                       class="rounded mx-auto d-block mt-2"
+                                       alt="..." />
+                                    <div class="card-body">
+                                       <h5
+                                          th:text="${item.name}"
+                                          class="card-title"
+                                          style="font-size: 1.2vw; color: #474c51"></h5>
+                                       <h5
+                                          th:text="${item.price}"
+                                          class="card-title rounded-pill p-1 price"
+                                          style="max-width: 20vh; font-size: 1.2vw; color: rgba(255, 255, 255, 0.925); background-color: #cb1c22; text-align: center"></h5>
+                                       <div
+                                          class="row shadow-sm p-0 m-0 bg-body rounded"
+                                          style="margin: 0px 0px !important; padding: 1rem 0.5rem !important">
+                                          <div class="row pb-2">
+                                             <i
+                                                style="color: #6c757d; cursor: help; font-size: 1vw"
+                                                class="fas fa-microchip">
+                                                <i
+                                                   class="fw-normal fst-normal lh-1"
+                                                   th:text="${' '+
+																		item.chip}"></i>
+                                             </i>
+                                          </div>
+                                          <div class="row pb-2">
+                                             <i
+                                                style="color: #6c757d; cursor: help; font-size: 1vw"
+                                                class="fas fa-memory">
+                                                <i
+                                                   class="fw-normal fst-normal lh-1"
+                                                   th:text="${' ' +
+																		item.ram + 'GB'}"></i>
+                                             </i>
+                                          </div>
+                                          <div class="row pb-2">
+                                             <i
+                                                style="color: #6c757d; cursor: help; font-size: 1vw"
+                                                class="fas fa-mobile-alt">
+                                                <i
+                                                   class="fw-normal fst-normal lh-1"
+                                                   th:text="${' ' +
+																		item.screen +
+																		'inch'}"></i>
+                                             </i>
+                                          </div>
+                                          <div class="row pb-2">
+                                             <i
+                                                style="color: #6c757d; cursor: help; font-size: 1vw"
+                                                class="fas fa-hdd">
+                                                <i
+                                                   class="fw-normal fst-normal lh-1"
+                                                   th:text="${' ' +
+																		item.rom + 'GB'}"></i>
+                                             </i>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div
+                                       class="d-flex justify-content-center pb-3 m-0 position-absolute top-100 start-50 translate-middle w-100 bg-body rounded"
+                                       id="block-bottom-card">
+                                       <div class="col-6 align-items-center text-center justify-content-center">
+                                          <button
+                                             style="font-size: 1vw"
+                                             type="button"
+                                             class="btn btn-danger">
+                                             Mua ngay
+                                          </button>
+                                       </div>
+                                       <div class="col-6">
+                                          <span
+                                             class="d-inline-block"
+                                             tabindex="0"
+                                             data-bs-toggle="popover"
+                                             data-bs-trigger="hover focus"
+                                             data-bs-content="Xem thông tin sản phẩm tại đây">
+                                             <button
+                                                th:value="${item.name}"
+                                                style="font-size: 1vw"
+                                                type="button"
+                                                class="btn btn-dark btn-view">
+                                                Xem chi tiết
+                                             </button>
+                                          </span>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </li>
+                           </ul>
+                        </div>
+                     </section>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- abs -->
+         <div class="container pb-4">
+            <div class="row text-center">
+               <img
+                  style="cursor: pointer; padding-left: 0; padding-right: 0; border-radius: 10px"
+                  class="w-100 rounded-full"
+                  src="https://images.fpt.shop/unsafe/fit-in/1200x200/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/3/10/638140408237294405_F-H5_1200x200.png"
+                  alt="" />
+            </div>
+         </div>
+         <!-- khuyến mãi hot -->
+         <div class="container mt-4">
+            <div class="row">
+               <div class="col shadow p-3 mb-5 bg-body rounded">
+                  <div class="row">
+                     <div class="d-flex m-0">
+                        <h2
+                           class="fs-5"
+                           style="color: #212529; font-weight: 600; float: left">
+                           ĐIỆN THOẠI NỔI BẬC
+                        </h2>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <section
+                        id="image-carousel-dienthoainoibac"
+                        class="splide"
+                        aria-label="Beautiful Images">
+                        <div class="splide__track pb-4">
+                           <ul class="splide__list">
+                              <li
+                                 class="splide__slide"
+                                 th:each="item :${sanphams}">
+                                 <div class="card pb-4">
+                                    <img
+                                       th:src="@{${item.img[0]}}"
+                                       style="max-width: 80%"
+                                       class="rounded mx-auto d-block mt-2"
+                                       alt="..." />
+                                    <div class="card-body">
+                                       <h5
+                                          th:text="${item.name}"
+                                          class="card-title fw-bold lh-1 text-break"
+                                          style="font-size: 1.2vw; color: #474c51"></h5>
+                                       <h5
+                                          th:text="${item.price}"
+                                          class="card-title rounded-pill p-1 price"
+                                          style="max-width: 20vh; font-size: 1.2vw; color: rgba(255, 255, 255, 0.925); background-color: #cb1c22; text-align: center"></h5>
+                                       <div
+                                          class="row shadow-sm p-0 m-0 bg-body rounded"
+                                          style="margin: 0px 0px !important; padding: 1rem 0.5rem !important">
+                                          <div class="row pb-2">
+                                             <i
+                                                style="color: #6c757d; cursor: help; font-size: 1vw"
+                                                class="fas fa-microchip">
+                                                <i
+                                                   class="fw-normal fst-normal lh-1"
+                                                   th:text="${' '+
+																		item.chip}"></i>
+                                             </i>
+                                          </div>
+                                          <div class="row pb-2">
+                                             <i
+                                                style="color: #6c757d; cursor: help; font-size: 1vw"
+                                                class="fas fa-memory">
+                                                <i
+                                                   class="fw-normal fst-normal lh-1"
+                                                   th:text="${' ' +
+																		item.ram + 'GB'}"></i>
+                                             </i>
+                                          </div>
+                                          <div class="row pb-2">
+                                             <i
+                                                style="color: #6c757d; cursor: help; font-size: 1vw"
+                                                class="fas fa-mobile-alt">
+                                                <i
+                                                   class="fw-normal fst-normal lh-1"
+                                                   th:text="${' ' +
+																		item.screen +
+																		'inch'}"></i>
+                                             </i>
+                                          </div>
+                                          <div class="row pb-2">
+                                             <i
+                                                style="color: #6c757d; cursor: help; font-size: 1vw"
+                                                class="fas fa-hdd">
+                                                <i
+                                                   class="fw-normal fst-normal lh-1"
+                                                   th:text="${' ' +
+																		item.rom + 'GB'}"></i>
+                                             </i>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div
+                                       class="d-flex justify-content-center pb-3 m-0 position-absolute top-100 start-50 translate-middle w-100 bg-body rounded"
+                                       id="block-bottom-card">
+                                       <div class="col-6 align-items-center text-center justify-content-center">
+                                          <button
+                                             style="font-size: 1vw"
+                                             type="button"
+                                             class="btn btn-danger">
+                                             Mua ngay
+                                          </button>
+                                       </div>
+                                       <div class="col-6">
+                                          <span
+                                             class="d-inline-block"
+                                             tabindex="0"
+                                             data-bs-toggle="popover"
+                                             data-bs-trigger="hover focus"
+                                             data-bs-content="Xem thông tin sản phẩm tại đây">
+                                             <button
+                                                th:value="${item.name}"
+                                                style="font-size: 1vw"
+                                                type="button"
+                                                class="btn btn-dark btn-view">
+                                                Xem chi tiết
+                                             </button>
+                                          </span>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </li>
+                           </ul>
+                        </div>
+                     </section>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- toast message login -->
+      <div
+         class="position-fixed top-0 end-0 p-3"
+         style="z-index: 1000"
+         th:if="${account != null}">
+         <div
+            id="liveToast"
+            class="toast show"
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true">
+            <div class="toast-header">
+               <img
+                  src="/img/icon-login.png"
+                  class="rounded me-2"
+                  alt="..."
+                  style="max-width: 10%" />
+               <strong class="me-auto">Đăng nhập thành công</strong> <small>1 mins ago</small>
+               <button
+                  type="button"
+                  class="btn-close close-toast"
+                  data-bs-dismiss="toast"
+                  aria-label="Close"></button>
+            </div>
+            <div
+               class="toast-body"
+               th:text="${'Xin chào
+                    '+account.lastName+'!'}"></div>
+         </div>
+      </div>
+      <!-- footer -->
+      <div th:include="user/Footer.html"></div>
+   </body>
+   <!-- jquery -->
+   <script
+      src="https://code.jquery.com/jquery-3.6.3.js"
+      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+      crossorigin="anonymous"></script>
+   <!-- swiper slide -->
+   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+   <!--header js -->
+   <script src="/js/header.js"></script>
+   <!-- index js -->
+   <script src="/js/user/index.js"></script>
+   <!-- spslide-js -->
+   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+   <!--block script-->
+   <script th:inline="javascript">
+      new Splide('#image-carousel', {
+         updateOnMove: true,
+         focus: 'center',
+         perPage: 4,
+         perMove: 1,
+         focus: 0,
+         gap: '0.5em',
+         omitEnd: true,
+      }).mount();
+
+      new Splide('#image-carousel-dienthoainoibac', {
+         updateOnMove: true,
+         focus: 'center',
+         perPage: 4,
+         perMove: 1,
+         focus: 0,
+         gap: '0.5em',
+         omitEnd: true,
+      }).mount();
+
+      $('.close-toast').click(function () {
+         $('.toast').toast('hide');
+      });
+      let cateitems = document.querySelectorAll('.cate-item');
+      cateitems.forEach((item) => {
+         item.addEventListener('mouseover', function () {
+            item.classList.add('shadow-lg');
+            item.classList.add('animationhover');
+         });
+         item.addEventListener('mouseout', function () {
+            item.classList.remove('shadow-lg');
+            item.classList.remove('animationhover');
+         });
+      });
+   </script>
+</html>
