@@ -15,12 +15,11 @@ public class SecurityConfiguration {
 
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
                 http.csrf().disable();
 
                 http.authorizeHttpRequests()
-                                .requestMatchers("/home/**", "/san-pham/**", "/register", "/api/**", "/logout",
-                                                "/css/**", "/js/**", "/img/**")
+                                .requestMatchers("/home/**", "/san-pham/**", "/register", "/login", "/logout",
+                                                "/css/**", "/js/**", "/img/**", "/search/**")
                                 .permitAll();
 
                 http.authorizeHttpRequests().requestMatchers("/cart/**").hasAnyAuthority("USER");
@@ -29,17 +28,17 @@ public class SecurityConfiguration {
 
                 http.authorizeHttpRequests().anyRequest().authenticated();
 
-                http.authorizeHttpRequests().and().exceptionHandling().accessDeniedPage("/403");
+                http.authorizeHttpRequests().and().exceptionHandling().accessDeniedPage("/error");
 
                 http
                                 .authorizeHttpRequests()
                                 .and()
                                 .formLogin()
-                                .loginPage("/api/auth/login")
+                                .loginPage("/login")
                                 .usernameParameter("username")
                                 .passwordParameter("password")
-                                .defaultSuccessUrl("/home")
-                                .failureUrl("/login?error=true")
+                                .defaultSuccessUrl("/home", true)
+                                .failureForwardUrl("/login?error=true")
                                 .and()
                                 .logout()
                                 .logoutSuccessUrl("/home")

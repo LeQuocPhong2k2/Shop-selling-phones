@@ -1,0 +1,43 @@
+:root {
+   --bg-footer: #dadcde;
+}
+/* css-fooster */
+.footer {
+   width: 100% !important;
+   background-color: var(--bg-footer) !important;
+}
+
+.footer .row {
+   margin-left: 4rem !important;
+   margin-right: 4rem !important;
+}
+
+.footer ul {
+   border: none !important;
+   /* background-color: var(--bg-footer) !important; */
+}
+
+.footer ul li {
+   background-color: #f8f9fa !important;
+   border: none !important;
+   color: #3c9dd4 !important;
+   padding: 0.2em 0.2em !important;
+   font-weight: 400;
+}
+
+.footer ul li {
+   cursor: pointer;
+}
+
+.footer ul li:hover {
+   color: #f3032b !important;
+   border-bottom: 1px solid #000000 !important;
+}
+
+.footer li p {
+   margin-bottom: 0em !important;
+}
+
+.footer .item-bank i {
+   font-size: 1.5rem;
+}

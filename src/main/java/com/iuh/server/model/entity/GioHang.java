@@ -1,15 +1,8 @@
 package com.iuh.server.model.entity;
 
-import java.util.Date;
+import java.util.*;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,6 +25,11 @@ public class GioHang {
     private boolean trangThaiThanhToan;
 
     @ManyToOne
-    @JoinColumn(name = "email")
+    @JoinColumn(name = "id")
     private Account account;
+
+    @OneToMany(mappedBy = "gioHang", cascade = CascadeType.ALL)
+    @Builder.Default
+    private List<ChiTietGioHang> chiTietGioHangs = new ArrayList<>();
+
 }

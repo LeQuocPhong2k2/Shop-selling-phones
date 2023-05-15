@@ -2,6 +2,8 @@ package com.iuh.server.model.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,6 +31,7 @@ public class DienThoai {
     private int rom;
 
     @OneToMany(mappedBy = "dienThoai")
+    @JsonManagedReference
     private List<SanPham> sanPhams;
 
 }

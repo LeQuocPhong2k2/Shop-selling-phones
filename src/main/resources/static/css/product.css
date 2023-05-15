@@ -1,0 +1,351 @@
+* {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+}
+body {
+   background: #eee;
+   font-family: 'Roboto', sans-serif;
+   font-size: 14px;
+   color: #000;
+   margin: 0;
+   padding: 0;
+}
+
+swiper-container {
+   width: 100%;
+   height: 100%;
+   border-radius: 10px;
+}
+
+swiper-slide {
+   text-align: center;
+   font-size: 18px;
+   background: #fff;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+swiper-slide img {
+   display: block;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+
+/* css check box */
+.checkbox-wrapper-4 * {
+   box-sizing: border-box;
+}
+
+.checkbox-wrapper-4 .cbx {
+   -webkit-user-select: none;
+   user-select: none;
+   cursor: pointer;
+   padding: 6px 8px;
+   border-radius: 6px;
+   overflow: hidden;
+   transition: all 0.2s ease;
+   display: inline-block;
+   font-size: 1vw;
+   color: rgba(39, 17, 17, 0.99);
+}
+
+.checkbox-wrapper-4 .cbx:not(:last-child) {
+   margin-right: 6px;
+}
+
+.checkbox-wrapper-4 .cbx:hover {
+   background: rgba(0, 119, 255, 0.06);
+}
+
+.checkbox-wrapper-4 .cbx span {
+   float: left;
+   vertical-align: middle;
+   transform: translate3d(0, 0, 0);
+}
+
+.checkbox-wrapper-4 .cbx span:first-child {
+   position: relative;
+   width: 18px;
+   height: 18px;
+   border-radius: 4px;
+   transform: scale(0.5);
+   border: 1px solid #cccfdb;
+   transition: all 0.2s ease;
+   box-shadow: 0 1px 1px rgba(0, 16, 75, 0.05);
+}
+
+.checkbox-wrapper-4 .cbx span:first-child svg {
+   position: absolute;
+   top: 3px;
+   left: 2px;
+   fill: none;
+   stroke: #fff;
+   stroke-width: 2;
+   stroke-linecap: round;
+   stroke-linejoin: round;
+   stroke-dasharray: 16px;
+   stroke-dashoffset: 16px;
+   transition: all 0.3s ease;
+   transition-delay: 0.1s;
+   transform: translate3d(0, 0, 0);
+}
+
+.checkbox-wrapper-4 .cbx span:last-child {
+   padding-left: 8px;
+   line-height: 18px;
+}
+
+.checkbox-wrapper-4 .cbx:hover span:first-child {
+   border-color: #07f;
+}
+
+.checkbox-wrapper-4 .inp-cbx {
+   position: absolute;
+   visibility: hidden;
+}
+
+.checkbox-wrapper-4 .inp-cbx:checked + .cbx span:first-child {
+   background: #07f;
+   border-color: #07f;
+   animation: wave-4 0.4s ease;
+}
+
+.checkbox-wrapper-4 .inp-cbx:checked + .cbx span:first-child svg {
+   stroke-dashoffset: 0;
+}
+
+.checkbox-wrapper-4 .inline-svg {
+   position: absolute;
+   width: 0;
+   height: 0;
+   pointer-events: none;
+   user-select: none;
+}
+
+@media screen and (max-width: 640px) {
+   .checkbox-wrapper-4 .cbx {
+      width: 100%;
+      display: inline-block;
+   }
+}
+
+@-moz-keyframes wave-4 {
+   50% {
+      transform: scale(0.9);
+   }
+}
+
+@-webkit-keyframes wave-4 {
+   50% {
+      transform: scale(0.9);
+   }
+}
+
+@-o-keyframes wave-4 {
+   50% {
+      transform: scale(0.9);
+   }
+}
+
+@keyframes wave-4 {
+   50% {
+      transform: scale(0.9);
+   }
+}
+
+.btn-next span {
+   font-size: 1.5vw;
+   opacity: 0.5;
+}
+.btn-previous span {
+   font-size: 1.5vw;
+   opacity: 0.5;
+}
+
+.product {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+}
+.icon-slide img {
+   transition: 0.2s all ease-in-out;
+   max-width: 90%;
+   cursor: pointer;
+}
+.splide__pagination {
+   display: none !important;
+}
+.delay {
+   transition: 0.2s all linear;
+}
+
+.icon-slide :hover {
+   transform: scale(1.1);
+}
+
+/* animate css */
+.animation-card {
+   animation: animate__flash 1s normal;
+}
+
+@keyframes animate__flash {
+   0%,
+   75%,
+   100% {
+      opacity: 1;
+   }
+
+   25%,
+   75% {
+      opacity: 0;
+   }
+}
+.active {
+   color: #cd1818;
+}
+
+.active-sort {
+   background-color: #cd1818 !important;
+   color: #fff !important;
+}
+
+input[type='checkbox'] {
+   width: 1em;
+   height: 1em;
+   accent-color: #cd1818 !important;
+   transition: 0.5s all linear;
+}
+.hovercardimg {
+   transform: scale(1.1);
+   transition: all 0.5s ease-in-out;
+}
+.unhovercardimg {
+   transform: scale(1);
+   transition: all 0.5s ease-in-out;
+}
+.content {
+   position: relative;
+   margin-top: 1rem;
+}
+
+.carousel-item img {
+   max-width: 100%;
+}
+
+.slide-parent {
+   background-color: rgb(255, 255, 255);
+   display: grid;
+   grid-template-columns: auto auto auto;
+}
+
+.slide-hangdt {
+   background-color: #ffffff;
+}
+
+.slide-hangdt img {
+   max-width: 200% !important;
+   transition: transform 0.2s;
+}
+
+.locTheoText {
+   border: 1px solid black;
+   padding: 1px 1px;
+   border-radius: 4px;
+   margin-right: 0.5em;
+   cursor: pointer;
+}
+
+.slide-hangdt img:hover {
+   transform: scale(1.2);
+}
+
+.slide-parent button {
+   position: absolute;
+   font-size: 2vw;
+   color: #000000;
+   cursor: pointer;
+   border: none;
+   background-color: #ffffff;
+   opacity: 0.8;
+}
+
+#next {
+   right: 0;
+   margin-right: 1rem;
+}
+
+#prev {
+   left: 0;
+   margin-left: 1rem;
+}
+.course {
+   position: relative;
+   margin: 1em 1em !important;
+   display: block;
+   justify-content: center;
+}
+
+.course .card {
+   margin: 1em 0.3em 1em 0.3em;
+}
+
+.course .card img {
+   max-width: 80%;
+}
+
+.course .card .card-body {
+   padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+.course .card .card-body h5 {
+   font-size: 1em;
+   font-weight: 500;
+}
+
+.show-course {
+   background-color: #ffffff !important;
+   border: none !important;
+   color: #000000 !important;
+}
+
+.item img {
+   max-width: 100% !important;
+}
+
+.slide-hangdt .item {
+   cursor: pointer;
+}
+
+.course-filter {
+   margin: 0em 0em 0em 0em !important;
+}
+
+.course-filter .item-filter {
+   font-size: 1vw;
+   font-weight: 500;
+}
+
+#block-bottom-card {
+   display: none !important;
+}
+.card:hover #block-bottom-card {
+   display: flex !important;
+   z-index: 999;
+   box-shadow: 0 4px 3px -2px #ccc;
+}
+.form-check label {
+   font-size: 1vw;
+   font-weight: 400;
+}
+
+.form-check input {
+   font-size: 1vw;
+   font-weight: 400;
+}
+
+.row-filter {
+   margin: 2em 0em !important;
+}

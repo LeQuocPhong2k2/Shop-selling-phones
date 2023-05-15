@@ -20,14 +20,214 @@
       <!-- icon awesome -->
       <link
          rel="stylesheet"
-         href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+         crossorigin="anonymous"
+         referrerpolicy="no-referrer" />
    </head>
    <body>
+      <style>
+         #input-search:focus {
+            outline: none;
+         }
+         .action-table {
+            transition: all 0.3s ease-in-out;
+         }
+         .action-table:hover {
+            color: rgb(225, 9, 241) !important;
+         }
+         .action-table:active {
+            color: #ccc !important;
+         }
+         #inputhinhAnh {
+            outline: none !important;
+            cursor: pointer !important;
+         }
+         #inputhinhAnh:focus::after {
+            border: none !important;
+            outline: none !important;
+         }
+         #btn-clear-img:hover {
+            color: #ccc !important;
+         }
+         #btn-clear-img:active {
+            color: #e00606 !important;
+         }
+         #change-img {
+            cursor: pointer;
+         }
+         #change-img:hover {
+            color: #ccc !important;
+         }
+         #change-img:active {
+            color: #e00606 !important;
+         }
+      </style>
       <div th:include="admin/Header.html"></div>
+      <div class="container mt-4">
+         <div class="col">
+            <div class="row">
+               <div class="search d-flex justify-content-between align-items-center border-1 border w-50 rounded-pill">
+                  <input
+                     id="input-search"
+                     class="border-0 w-100 p-2"
+                     placeholder="Chọn phương thức tìm kiếm và nhập từ khóa"
+                     type="text" />
+                  <i
+                     style="cursor: pointer"
+                     class="fa-solid fa-magnifying-glass"></i>
+               </div>
+            </div>
+            <div class="row mt-4">
+               <table class="table">
+                  <thead class="bg-primary text-white rounded-2">
+                     <tr>
+                        <th
+                           class="fw-normal"
+                           scope="col">
+                           ID
+                        </th>
+                        <th
+                           class="fw-normal"
+                           scope="col">
+                           HẠNG MỤC
+                        </th>
+                        <th
+                           class="fw-normal"
+                           scope="col">
+                           THƯƠNG HIỆU
+                        </th>
+                        <th
+                           class="fw-normal"
+                           scope="col">
+                           TÊN SẢN PHẨM
+                        </th>
+                        <th
+                           class="fw-normal"
+                           scope="col">
+                           NCC
+                        </th>
+                        <th
+                           class="text-center fw-normal"
+                           scope="col">
+                           GIÁ NHẬP VÀO
+                        </th>
+                        <th
+                           class="text-center fw-normal"
+                           scope="col">
+                           GIÁ BÁN RA (Bao gồm VAT)
+                        </th>
+                        <th
+                           class="fw-normal"
+                           scope="col"
+                           colspan="2"></th>
+                     </tr>
+                  </thead>
+                  <tbody id="tableBody">
+                     <tr th:each="item : ${sanPhams}">
+                        <td th:text="${item.maSanPham}"></td>
+                        <td th:text="${item.loaiSanPham.tenLoaiSanPham}"></td>
+                        <td th:text="${item.thuongHieu.tenThuongHieu}"></td>
+                        <td th:text="${item.tenSanPham}"></td>
+                        <td th:text="${item.chiTietNhapHangs[0].nhaCungCap.tenNhaCungCap}"></td>
+                        <td
+                           class="text-center"
+                           th:text="${#numbers.formatDecimal(item.chiTietNhapHangs[0].donGiaNhap,0,'COMMA',0,'POINT')}"></td>
+                        <td
+                           class="text-center"
+                           th:text="${#numbers.formatDecimal(item.tinhGiaBan(),0,'COMMA',0,'POINT')}"></td>
+                        <!-- <td
+                           th:value="${item.maSanPham}+','+${item.chiTietNhapHangs[0].nhaCungCap.tenNhaCungCap}"
+                           id="btn-view-product"
+                           style="cursor: pointer"
+                           class="text-primary p-2 action-table">
+                           <i class="p-1 fa-solid fa-eye"></i>
+                        </td> -->
+                        <td
+                           id="btn-delete-product"
+                           style="cursor: pointer"
+                           th:value="${item.maSanPham}"
+                           class="text-danger p-2 action-table">
+                           <i class="p-1 fa-solid fa-trash"></i>
+                        </td>
+                        <td
+                           id="btn-update-product"
+                           th:value="${item.maSanPham}+','+${item.chiTietNhapHangs[0].nhaCungCap.tenNhaCungCap}"
+                           style="cursor: pointer"
+                           class="text-warning p-2 action-table">
+                           <i class="p-1 fa-solid fa-pen"></i>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+
+      <!-- modal confirm delete -->
+      <div
+         class="modal fade"
+         id="modalConfirmDelete"
+         tabindex="-1"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+         <div
+            class="modal-dialog"
+            style="margin-top: 15rem !important">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5
+                     class="modal-title text-danger"
+                     id="exampleModalLabel">
+                     <i
+                        class="fa-solid fa-circle-exclamation"
+                        style="color: #b21f15"></i>
+                     WARNING
+                  </h5>
+                  <button
+                     type="button"
+                     class="btn-close"
+                     data-bs-dismiss="modal"
+                     aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                  <span>Bạn muốn xóa sản phẩm này!</span>
+               </div>
+               <div class="modal-footer">
+                  <button
+                     type="button"
+                     class="btn btn-secondary"
+                     data-bs-dismiss="modal">
+                     Close
+                  </button>
+                  <button
+                     id="btn-confirm-delete"
+                     type="button"
+                     class="btn btn-danger">
+                     <i class="fa-solid fa-trash"></i>
+                  </button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- modal xem thong tin chi tiet -->
+      <div
+         class="modal fade"
+         id="modalUpdateProduct"
+         tabindex="-1"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true"></div>
    </body>
    <!-- bootstrap js -->
    <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script>
+   <!-- file js -->
+   <script src="/js/admin/ListProduct.js"></script>
+   <!-- query js -->
+   <script
+      src="https://code.jquery.com/jquery-3.7.0.js"
+      integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
       crossorigin="anonymous"></script>
 </html>

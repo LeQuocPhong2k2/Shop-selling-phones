@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html
+   xmlns:th="http://www.thymeleaf.org"
+   lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta
+         http-equiv="X-UA-Compatible"
+         content="IE=edge" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1.0" />
+      <title>Tìm kiếm</title>
+      <link
+         rel="stylesheet"
+         href="/css/product.css" />
+      <!-- icon awesome -->
+
+      <!-- animate css -->
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+      <!-- spslide-css -->
+      <link
+         rel="stylesheet"
+         href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
+   </head>
+   <body>
+      <!-- header -->
+      <div th:include="user/header.html"></div>
+      <div class="container content">
+         <div class="col">
+            <div class="row mb-4 mt-4">
+               <span>Kết quả tìm kiếm</span>
+            </div>
+            <div class="row align-items-start justify-content-center product shadow p-3 mb-5 bg-body rounded">
+               <h1 th:if="${ds} == 'null'">Kết quả tìm kiếm rỗng</h1>
+               <div
+                  class="card m-0"
+                  th:each="item :${ds}"
+                  style="max-width: 17rem; cursor: pointer; border: none">
+                  <div
+                     class="card-wrapper m-0"
+                     th:value="${item.maSanPham}">
+                     <img
+                        th:src="@{${item.hinhAnh.url}}"
+                        style="max-width: 80%"
+                        class="rounded mx-auto d-block mt-2 img"
+                        alt="..." />
+                     <div class="card-body">
+                        <h5
+                           th:text="${item.tenSanPham}"
+                           class="card-title fw-bold lh-1 font-monospace text-break"
+                           style="font-size: 1.2vw; color: #474c51"></h5>
+                        <h5
+                           th:text="${item.chiTietNhapHangs != null and item.chiTietNhapHangs.size() > 0
+                                          ? (#numbers.formatDecimal((item.chiTietNhapHangs[0].donGiaNhap
+                                          + item.chiTietNhapHangs[0].chiPhiLuuKho + item.chiTietNhapHangs[0].chiPhiQuanLy)
+                                          * item.chiTietNhapHangs[0].phanTramLoiNhuan, 0, 'COMMA', 2, 'POINT'))+ 'đ' : 'Đang cập nhật'}"
+                           class="card-title rounded-pill p-1 price"
+                           style="max-width: 20vh; font-size: 1.2vw; color: rgba(255, 255, 255, 0.925); background-color: #cb1c22; text-align: center"></h5>
+                        <div
+                           class="row shadow-none p-3 mb-5 bg-light rounded"
+                           style="margin: 0px 0px !important; padding: 1rem 0.5rem !important">
+                           <div class="row pb-2">
+                              <i
+                                 style="color: #6c757d; cursor: help; font-size: 1vw"
+                                 class="fas fa-microchip">
+                                 <i
+                                    class="fw-normal fst-normal lh-1"
+                                    th:text="${item.dienThoai != null ? item.dienThoai.heDieuHanh + 'Chip': 'No HDH '}"></i>
+                              </i>
+                           </div>
+                           <div class="row pb-2">
+                              <i
+                                 style="color: #6c757d; cursor: help; font-size: 1vw"
+                                 class="fas fa-memory">
+                                 <i
+                                    class="fw-normal fst-normal lh-1"
+                                    th:text="${item.dienThoai != null ? item.dienThoai.ram + 'GB': 'NO RAM'}"></i>
+                              </i>
+                           </div>
+                           <div class="row pb-2">
+                              <i
+                                 style="color: #6c757d; cursor: help; font-size: 1vw"
+                                 class="fas fa-mobile-alt">
+                                 <i
+                                    class="fw-normal fst-normal lh-1"
+                                    th:text="${item.dienThoai != null ? item.dienThoai.manHinh+  'inch': 'NO SCREEN'}"></i>
+                              </i>
+                           </div>
+                           <div class="row pb-2">
+                              <i
+                                 style="color: #6c757d; cursor: help; font-size: 1vw"
+                                 class="fas fa-hdd">
+                                 <i
+                                    class="fw-normal fst-normal lh-1"
+                                    th:text="${item.dienThoai != null ? item.dienThoai.rom + 'Rom': 'NO ROM'}"></i>
+                              </i>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="d-flex justify-content-center p-0 m-0">
+                        <div class="col-6 align-items-center text-center justify-content-center">
+                           <button
+                              style="font-size: 1vw"
+                              type="button"
+                              class="btn btn-danger">
+                              Mua ngay
+                           </button>
+                        </div>
+                        <div class="col-6">
+                           <span
+                              class="d-inline-block"
+                              tabindex="0"
+                              data-bs-toggle="popover"
+                              data-bs-trigger="hover focus"
+                              data-bs-content="Xem thông tin sản phẩm tại đây">
+                              <button
+                                 th:value="${item.maSanPham}"
+                                 style="font-size: 1vw"
+                                 type="button"
+                                 class="btn btn-dark btn-view">
+                                 Xem chi tiết
+                              </button>
+                           </span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+   <!-- swiper slide -->
+   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+   <!--header js -->
+   <script src="/js/header.js"></script>
+   <!-- spslide-js -->
+   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+   <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script>
+   <script>
+      let btnview = document.querySelectorAll('.btn-view');
+      btnview.forEach(function (item) {
+         item.addEventListener('click', function () {
+            let name = item.getAttribute('value');
+            let url = '/san-pham/dien-thoai/show?id=' + name;
+            $.ajax({
+               url: url,
+               type: 'GET',
+               success: function (data) {
+                  window.location.href = url;
+               },
+               error: function (data) {
+                  console.log(data);
+               },
+            });
+            // alert(name)
+         });
+      });
+   </script>
+</html>

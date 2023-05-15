@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1.0" />
+      <meta
+         http-equiv="X-UA-Compatible"
+         content="ie=edge" />
+      <title>Thông tin hay</title>
+
+      <!-- Bootstrap CSS -->
+      <link
+         rel="stylesheet"
+         href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+         crossorigin="anonymous" />
+
+      <!-- Fontawesome CSS -->
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+         integrity="sha512-KNfz74/fJPkNjwzF2Qo7iTHz/1jkxJlJaRCtO2h7KjOOF1ZBt1wunhxIThV7SK/MjKlFV7hLFkR73Y9H+kDuWw=="
+         crossorigin="anonymous"
+         referrerpolicy="no-referrer" />
+
+      <style>
+         body {
+            background-color: #f8f9fa;
+            font-family: 'Open Sans', sans-serif;
+         }
+
+         /* Header */
+         .navbar {
+            background-color: #343a40 !important;
+            border-bottom: 1px solid #6c757d;
+            color: #fff;
+         }
+
+         .navbar-brand {
+            color: #fff;
+            font-weight: 600;
+            font-size: 26px;
+            letter-spacing: 1px;
+         }
+
+         /* Hero section */
+         .jumbotron {
+            background-color: #ffc107;
+            color: #fff;
+            padding: 4rem 2rem;
+            margin-bottom: 0;
+         }
+
+         .jumbotron h1 {
+            font-weight: bold;
+            font-size: 52px;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+         }
+
+         .jumbotron p {
+            font-size: 24px;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+         }
+
+         /* Article section */
+         .article-container {
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+         }
+
+         .article-card {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            padding: 1rem;
+            transition: transform 0.2s ease-in-out;
+            cursor: pointer;
+         }
+
+         .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+         }
+
+         .article-card h2 {
+            font-size: 28px;
+            font-weight: bold;
+         }
+         .article-card p {
+            margin-top: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+            height: 3em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+         }
+         .article-card .btn {
+            margin-top: 20px;
+         }
+      </style>
+   </head>
+   <body>
+      <!-- header -->
+      <div th:include="user/header.html"></div>
+      <div class="article-card">
+         <div class="card-img">
+            <a href="#">
+               <img
+                  src="https://images.fpt.shop/unsafe/filters:quality(90)/fptshop.com.vn/uploads/images/tin-tuc/157779/Originals/Pixel-Fold-ra-mat-4.jpeg"
+                  alt="Article Image" />
+            </a>
+         </div>
+         <div class="card-body">
+            <h2><a href="#">Tiêu đề bài viết</a></h2>
+            <p>Mô tả ngắn gọn về bài viết. Mô tả ngắn gọn về bài viết. Mô tả ngắn gọn về bài viết. Mô tả ngắn gọn về bài viết.</p>
+            <a
+               href="#"
+               class="btn btn-primary"
+               >Xem chi tiết</a
+            >
+         </div>
+      </div>
+      <nav>
+         <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+               <a
+                  class="page-link"
+                  href="#"
+                  tabindex="-1"
+                  aria-disabled="true"
+                  >Trước</a
+               >
+            </li>
+            <li
+               class="page-item active"
+               aria-current="page">
+               <a
+                  class="page-link"
+                  href="#"
+                  >1</a
+               >
+            </li>
+            <li class="page-item">
+               <a
+                  class="page-link"
+                  href="#"
+                  >2</a
+               >
+            </li>
+            <li class="page-item">
+               <a
+                  class="page-link"
+                  href="#"
+                  >3</a
+               >
+            </li>
+            <li class="page-item">
+               <a
+                  class="page-link"
+                  href="#"
+                  >Sau</a
+               >
+            </li>
+         </ul>
+      </nav>
+      <!-- header -->
+      <div th:include="user/footer.html"></div>
+   </body>
+</html>

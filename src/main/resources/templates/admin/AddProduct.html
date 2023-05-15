@@ -27,6 +27,30 @@
    </head>
    <body>
       <style>
+         #btnShowSanPham {
+            color: white;
+            font-weight: 600;
+         }
+         #btnShowSanPham:hover {
+            background-color: #0c0149c5 !important;
+            color: white;
+            font-weight: 600;
+         }
+         #btnShowSanPham:active {
+            background-color: #0c01494d !important;
+            color: white;
+            font-weight: 600;
+         }
+         #btnSaveSanPham:hover {
+            background-color: #0c0149c5;
+            color: white;
+            font-weight: 600;
+         }
+         #btnSaveSanPham:active {
+            background-color: #0c01494d;
+            color: white;
+            font-weight: 600;
+         }
          #btnAddNcc {
             font-weight: 600;
          }
@@ -36,7 +60,7 @@
          #btnAddNcc:active {
             background-color: #cccccc88;
          }
-         #btnSave {
+         #btnSaveSanPham {
             background-color: #0d6efd;
             color: white;
             font-weight: 600;
@@ -44,149 +68,374 @@
          .table input:focus {
             outline: none;
          }
+         .modal input:focus {
+            outline: none;
+         }
+         .table thead {
+            background-color: #ccc;
+         }
+         .table th {
+            font-weight: 600;
+         }
+         select {
+            cursor: pointer;
+         }
+         #seeInfoNcc {
+            display: none;
+            position: absolute;
+         }
+         #seeInfoNcc:hover {
+            color: rgb(241, 8, 206) !important;
+         }
+         #seeInfoNcc:active {
+            color: #cccccc88 !important;
+         }
+         #inputDonGiaNhapNCC:focus {
+            outline: none;
+         }
       </style>
       <div th:include="admin/Header.html"></div>
-      <div class="container mt-4">
-         <div class="row mt-4">
-            <div class="d-flex shadow p-3 mb-5 bg-body rounded justify-content-between align-items-center">
-               <div class="col text-center">
-                  <ul class="list-group list-group-horizontal">
-                     <li class="list-group-item">
-                        <select
-                           id="selectNcc"
-                           class="form-select"
-                           aria-label="Default select example">
-                           <option selected>Chọn nhà cung cấp</option>
-                           <option value="">CTY TNHH CTPV</option>
-                           <option
-                              value="addNcc"
-                              class="text-primary">
-                              + Thêm nhà cung cấp
-                           </option>
-                        </select>
-                     </li>
-                     <li class="list-group-item">
-                        <select
-                           class="form-select"
-                           aria-label="Default select example">
-                           <option selected>Chọn thương hiệu</option>
-                           <option value="1">Apple</option>
-                           <option
-                              value=""
-                              class="text-primary">
-                              + Thêm thương hiệu
-                           </option>
-                        </select>
-                     </li>
-                     <li class="list-group-item">
-                        <select
-                           class="form-select"
-                           aria-label="Default select example">
-                           <option selected>Chọn hạng mục</option>
-                           <option value="1">Điện thoại</option>
-                           <option
-                              value=""
-                              class="text-primary">
-                              + Thêm hạng mục
-                           </option>
-                        </select>
-                     </li>
-                  </ul>
+      <div
+         class="container mt-4 p-4"
+         style="margin-top: 4rem !important">
+         <div class="row">
+            <div class="col-9">
+               <div class="row">
+                  <div class="col">
+                     <div class="row mb-2">
+                        <ul class="list-group list-group-horizontal border-0">
+                           <li class="list-group-item border-0 fw-bolder p-0">
+                              <i
+                                 class="fa-solid fa-square-check"
+                                 style="margin-right: 5px"></i
+                              >Chọn thông tin:
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="row">
+                        <ul class="list-group list-group-horizontal border-0 p-0">
+                           <li
+                              class="list-group-item border-0 p-0"
+                              style="margin-right: 10px">
+                              <select
+                                 id="selectNcc"
+                                 class="form-select"
+                                 aria-label="Default select example">
+                                 <option
+                                    selected
+                                    value="Chọn nhà cung cấp">
+                                    Chọn nhà cung cấp
+                                 </option>
+                                 <option
+                                    th:each="ncc : ${nccs}"
+                                    th:value="${ncc.tenNhaCungCap}"
+                                    th:text="${ncc.tenNhaCungCap}"></option>
+                                 <option
+                                    value="addNcc"
+                                    class="text-primary">
+                                    + Thêm nhà cung cấp
+                                 </option>
+                              </select>
+                              <span
+                                 id="seeInfoNcc"
+                                 class="text-primary"
+                                 style="text-decoration: none; font-weight: 400; font-style: italic; cursor: pointer"
+                                 >Xem thông tin nhà cung cấp</span
+                              >
+                           </li>
+                           <li
+                              class="list-group-item border-0 p-0"
+                              style="margin-right: 10px">
+                              <div class="d-flex justify-content-center align-items-center">
+                                 <!-- <span class="p-2">Đơn giá nhập:</span> -->
+                                 <input
+                                    id="inputDonGiaNhapNCC"
+                                    placeholder="Đơn giá nhập"
+                                    class="border-0 bg-light p-2"
+                                    type="text" />
+                              </div>
+                           </li>
+                           <li
+                              class="list-group-item border-0 p-0"
+                              style="margin-right: 10px">
+                              <select
+                                 id="selectThuongHieu"
+                                 class="form-select"
+                                 aria-label="Default select example">
+                                 <option
+                                    selected
+                                    value="0">
+                                    Chọn thương hiệu
+                                 </option>
+                                 <option
+                                    th:each="item : ${thuongHieus}"
+                                    th:value="${item.tenThuongHieu}"
+                                    th:text="${item.tenThuongHieu}"></option>
+                                 <option
+                                    value="addThuongHieu"
+                                    class="text-primary">
+                                    + Thêm thương hiệu
+                                 </option>
+                              </select>
+                           </li>
+                           <li
+                              class="list-group-item border-0 p-0"
+                              style="margin-right: 10px">
+                              <select
+                                 id="selectHangMuc"
+                                 class="form-select"
+                                 aria-label="Default select example">
+                                 <option
+                                    selected
+                                    value="0">
+                                    Chọn hạng mục
+                                 </option>
+                                 <option value="Điện thoại">Điện thoại</option>
+                                 <option
+                                    value="addHangMuc"
+                                    class="text-primary">
+                                    + Thêm hạng mục
+                                 </option>
+                              </select>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="row mt-4">
+                  <div class="col">
+                     <div class="row">
+                        <ul class="list-group list-group-horizontal border-0 mb-2">
+                           <li class="list-group-item border-0 fw-bolder p-0">
+                              <i
+                                 class="fa-solid fa-square-pen"
+                                 style="margin-right: 5px"></i
+                              >Điền thông tin:
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="row">
+                        <table class="table table-secondary">
+                           <tbody>
+                              <tr>
+                                 <th scope="col">Tên sản phẩm</th>
+                                 <th scope="col">Hệ điều hành</th>
+                                 <th scope="col">Màn hình</th>
+                              </tr>
+                              <tr>
+                                 <td class="border-0">
+                                    <input
+                                       id="inputTenSanPham"
+                                       class="p-1 border-0 bg-light"
+                                       placeholder="Tên sản phẩm"
+                                       type="text" />
+                                 </td>
+                                 <td class="border-0">
+                                    <input
+                                       id="inputHeDieuHanh"
+                                       class="p-1 border-0 bg-light"
+                                       placeholder="Hệ điều hành"
+                                       type="text" />
+                                 </td>
+                                 <td class="border-0">
+                                    <input
+                                       id="inputManHinh"
+                                       class="p-1 border-0 bg-light"
+                                       placeholder="Màn hình"
+                                       type="text" />
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th class="border-0"></th>
+                                 <th class="border-0"></th>
+                                 <th class="border-0"></th>
+                              </tr>
+                              <tr>
+                                 <td class="border-0"></td>
+                                 <td class="border-0"></td>
+                                 <td class="border-0"></td>
+                              </tr>
+                              <tr>
+                                 <th scope="col">Ram</th>
+                                 <th scope="col">Rom</th>
+                                 <th scope="col">Hình ảnh</th>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <select
+                                       id="inputRam"
+                                       class="p-1 bg-light rounded">
+                                       <option
+                                          selected
+                                          value="2">
+                                          2 GB
+                                       </option>
+                                       <option value="4">4 GB</option>
+                                       <option value="6">6 GB</option>
+                                       <option value="8">8 GB</option>
+                                       <option value="16">16 GB</option>
+                                    </select>
+                                 </td>
+
+                                 <td>
+                                    <select
+                                       id="inputRom"
+                                       class="p-1 bg-light rounded">
+                                       <option
+                                          selected
+                                          value="64">
+                                          64 GB
+                                       </option>
+                                       <option value="128">128 GB</option>
+                                       <option value="256">256 GB</option>
+                                       <option value="512">512 GB</option>
+                                       <option value="1024">1024 GB</option>
+                                    </select>
+                                 </td>
+                                 <td>
+                                    <input
+                                       id="inputHinhAnh"
+                                       class="p-1 border-0 bg-light"
+                                       placeholder="Hình ảnh"
+                                       type="text" />
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="row justify-content-start">
+                        <div class="col-3 p-0">
+                           <button
+                              id="btnSaveSanPham"
+                              class="p-2 border-0 rounded">
+                              <i class="fa-solid fa-circle-plus p-1"></i>Thêm sản phẩm
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-3">
+               <div class="d-flex justify-content-start align-items-center">
+                  <span style="margin-left: 4rem; font-weight: 600"
+                     ><i
+                        class="fa-regular fa-eye-slash"
+                        style="margin-right: 5px"></i
+                     >Xem trước sản phẩm</span
+                  >
+               </div>
+               <div class="d-flex justify-content-center align-items-center">
+                  <div
+                     class="card shadow p-3 mb-5 bg-body rounded mt-1"
+                     style="width: 18rem">
+                     <img
+                        id="card-img"
+                        src=""
+                        class="card-img-top"
+                        alt="..." />
+                     <div class="card-body">
+                        <h5
+                           class="card-title"
+                           id="card-name">
+                           Card title
+                        </h5>
+                     </div>
+                     <ul class="list-group list-group-flush">
+                        <li
+                           class="list-group-item"
+                           id="card-cpu">
+                           An item
+                        </li>
+                        <li
+                           class="list-group-item"
+                           id="card-screen">
+                           A second item
+                        </li>
+                        <li
+                           class="list-group-item"
+                           id="card-ram">
+                           A third item
+                        </li>
+                        <li
+                           class="list-group-item"
+                           id="card-rom">
+                           A third item
+                        </li>
+                     </ul>
+                  </div>
                </div>
             </div>
          </div>
-         <div class="row">
-            <span class="text-dark p-0 mb-2"><i class="fa-solid fa-mobile-button"></i>Hạng mục điện thoại</span>
-            <table class="table">
-               <thead class="bg-dark text-white">
-                  <tr>
-                     <th scope="col">Tên sản phẩm</th>
-                     <th scope="col">Hệ điều hành</th>
-                     <th scope="col">Màn hình</th>
-                     <th scope="col">Ram</th>
-                     <th scope="col">Rom</th>
-                     <th scope="col">Hình ảnh</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr>
-                     <td>
-                        <input
-                           class="p-1 border-0 bg-light"
-                           placeholder="Tên sản phẩm"
-                           type="text" />
-                     </td>
-                     <td>
-                        <input
-                           class="p-1 border-0 bg-light"
-                           placeholder="Hệ điều hành"
-                           type="text" />
-                     </td>
-                     <td>
-                        <input
-                           class="p-1 border-0 bg-light"
-                           placeholder="Màn hình"
-                           type="text" />
-                     </td>
-                     <td>
-                        <select class="p-1 bg-light rounded">
-                           <option selected>2 GB</option>
-                           <option value="1">4 GB</option>
-                           <option value="2">6 GB</option>
-                           <option value="3">8 GB</option>
-                           <option value="3">816 GB</option>
-                        </select>
-                     </td>
-                     <td>
-                        <select class="p-1 bg-light rounded">
-                           <option selected>64 GB</option>
-                           <option value="1">128 GB</option>
-                           <option value="2">256 GB</option>
-                           <option value="3">512 GB</option>
-                           <option value="3">1024 GB</option>
-                        </select>
-                     </td>
-                     <td>
-                        <input
-                           class="p-1 border-0 bg-light"
-                           placeholder="Hình ảnh"
-                           type="text" />
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
-            <button
-               id="btnSave"
-               class="p-2 border-0 rounded">
-               <i class="fa-solid fa-circle-plus p-1"></i>Thêm sản phẩm
-            </button>
-         </div>
       </div>
+
       <!-- modal thêm nhà cung cấp -->
       <div
-         class="modal"
-         tabindex="-1">
+         class="modal fade"
+         id="modalNCC"
+         tabindex="-1"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
          <div class="modal-dialog">
             <div class="modal-content">
                <div class="modal-header">
                   <h5 class="modal-title">Thêm nhà cung cấp</h5>
                   <button
+                     onclick="closeModalNCC()"
                      type="button"
                      class="btn-close"
                      data-bs-dismiss="modal"
                      aria-label="Close"></button>
                </div>
                <div class="modal-body">
-                  <p>Modal body text goes here.</p>
+                  <div class="container justify-content-center m-0">
+                     <div class="row mt-2">
+                        <div class="col-6">
+                           <span>Tên nhà cung cấp:</span>
+                        </div>
+                        <div class="col-6">
+                           <input
+                              id="inputTenNCC"
+                              placeholder="Tên nhà cung cấp"
+                              class="p-1 border-0 bg-light"
+                              type="text" />
+                        </div>
+                     </div>
+                     <div class="row mt-2">
+                        <div class="col-6">
+                           <span>Địa chỉ:</span>
+                        </div>
+                        <div class="col-6">
+                           <input
+                              id="inputDiaChiNCC"
+                              placeholder="Địa chỉ"
+                              class="p-1 border-0 bg-light"
+                              type="text" />
+                        </div>
+                     </div>
+                     <div class="row mt-2">
+                        <div class="col-6">
+                           <span>Email liên hệ:</span>
+                        </div>
+                        <div class="col-6">
+                           <input
+                              id="inputEmailNCC"
+                              placeholder="Email liên hệ"
+                              class="p-1 border-0 bg-light"
+                              type="text" />
+                        </div>
+                     </div>
+                  </div>
                </div>
                <div class="modal-footer">
                   <button
+                     onclick="closeModalNCC()"
                      type="button"
                      class="btn btn-secondary"
                      data-bs-dismiss="modal">
                      Close
                   </button>
                   <button
+                     id="btnSaveNCC"
                      type="button"
                      class="btn btn-primary">
                      Save changes
@@ -195,6 +444,117 @@
             </div>
          </div>
       </div>
+      <!-- modal thêm thuong hieeu -->
+      <div
+         class="modal fade"
+         id="modalThuongHieu"
+         tabindex="-1"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title">Thêm thương hiệu</h5>
+                  <button
+                     onclick="closeModalThuongHieu()"
+                     type="button"
+                     class="btn-close"
+                     data-bs-dismiss="modal"
+                     aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                  <div class="container justify-content-center m-0">
+                     <div class="row mt-2">
+                        <div class="col-6">
+                           <span>Tên thương hiệu:</span>
+                        </div>
+                        <div class="col-6">
+                           <input
+                              id="inputTenThuongHieu"
+                              placeholder="Tên thương hiệu"
+                              class="p-1 border-0 bg-light"
+                              type="text" />
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button
+                     onclick="closeModalThuongHieu()"
+                     type="button"
+                     class="btn btn-secondary"
+                     data-bs-dismiss="modal">
+                     Close
+                  </button>
+                  <button
+                     id="btnSaveThuongHieu"
+                     type="button"
+                     class="btn btn-primary">
+                     Save changes
+                  </button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- modal thêm hạng mục -->
+      <div
+         class="modal fade"
+         id="modalHangMuc"
+         tabindex="-1"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title">Thêm hạng muục</h5>
+                  <button
+                     onclick="closeModalHangMuc()"
+                     type="button"
+                     class="btn-close"
+                     data-bs-dismiss="modal"
+                     aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                  <div class="container justify-content-center m-0">
+                     <div class="row mt-2">
+                        <div class="col-6">
+                           <span>Tên hạng mục:</span>
+                        </div>
+                        <div class="col-6">
+                           <input
+                              id="inputTenHangMuc"
+                              placeholder="Tên hạng mục"
+                              class="p-1 border-0 bg-light"
+                              type="text" />
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button
+                     onclick="closeModalHangMuc()"
+                     type="button"
+                     class="btn btn-secondary"
+                     data-bs-dismiss="modal">
+                     Close
+                  </button>
+                  <button
+                     id="btnSaveHangMuc"
+                     type="button"
+                     class="btn btn-primary">
+                     Save changes
+                  </button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- modal info nhà cung cấp -->
+      <div
+         class="modal fade"
+         id="modalInforNCC"
+         tabindex="-1"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true"></div>
    </body>
    <!-- bootstrap js -->
    <script
@@ -207,10 +567,5 @@
       integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
       crossorigin="anonymous"></script>
    <!-- file js -->
-   <script src="js/admin/AddProduct.js"></script>
-   <script>
-      $(document).ready(function () {
-         $('.modal').modal('show');
-      });
-   </script>
+   <script src="/js/admin/AddProduct.js"></script>
 </html>

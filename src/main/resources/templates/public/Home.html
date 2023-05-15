@@ -16,9 +16,9 @@
          rel="shortcut icon"
          href="/img/icon-login.png" />
       <!-- file css -->
-      <link
+      <!-- <link
          rel="stylesheet"
-         href="/css/index.css" />
+         href="/css/index.css" /> -->
       <!-- icon awesome -->
       <link
          rel="stylesheet"
@@ -292,17 +292,20 @@
                                  th:each="item :${sanphams}">
                                  <div class="card pb-4">
                                     <img
-                                       th:src="@{${item.img[0]}}"
+                                       th:src="@{${item.hinhAnh.url}}"
                                        style="max-width: 80%"
                                        class="rounded mx-auto d-block mt-2"
                                        alt="..." />
                                     <div class="card-body">
                                        <h5
-                                          th:text="${item.name}"
+                                          th:text="${item.tenSanPham}"
                                           class="card-title"
                                           style="font-size: 1.2vw; color: #474c51"></h5>
                                        <h5
-                                          th:text="${item.price}"
+                                          th:text="${item.chiTietNhapHangs != null and item.chiTietNhapHangs.size() > 0
+                                          ? (#numbers.formatDecimal((item.chiTietNhapHangs[0].donGiaNhap
+                                          + item.chiTietNhapHangs[0].chiPhiLuuKho + item.chiTietNhapHangs[0].chiPhiQuanLy)
+                                          * item.chiTietNhapHangs[0].phanTramLoiNhuan, 0, 'COMMA', 2, 'POINT'))+ 'đ' : 'No giá'}"
                                           class="card-title rounded-pill p-1 price"
                                           style="max-width: 20vh; font-size: 1.2vw; color: rgba(255, 255, 255, 0.925); background-color: #cb1c22; text-align: center"></h5>
                                        <div
@@ -314,8 +317,7 @@
                                                 class="fas fa-microchip">
                                                 <i
                                                    class="fw-normal fst-normal lh-1"
-                                                   th:text="${' '+
-																		item.chip}"></i>
+                                                   th:text="${item.dienThoai != null ? item.dienThoai.heDieuHanh+ 'Chip' : 'No HDH'}"></i>
                                              </i>
                                           </div>
                                           <div class="row pb-2">
@@ -324,8 +326,7 @@
                                                 class="fas fa-memory">
                                                 <i
                                                    class="fw-normal fst-normal lh-1"
-                                                   th:text="${' ' +
-																		item.ram + 'GB'}"></i>
+                                                   th:text="${item.dienThoai != null ? item.dienThoai.ram+ 'G' : 'No Ram'}"></i>
                                              </i>
                                           </div>
                                           <div class="row pb-2">
@@ -334,9 +335,7 @@
                                                 class="fas fa-mobile-alt">
                                                 <i
                                                    class="fw-normal fst-normal lh-1"
-                                                   th:text="${' ' +
-																		item.screen +
-																		'inch'}"></i>
+                                                   th:text="${item.dienThoai != null ? item.dienThoai.manHinh+ 'inch' : 'No Man Hinh'}"></i>
                                              </i>
                                           </div>
                                           <div class="row pb-2">
@@ -345,8 +344,7 @@
                                                 class="fas fa-hdd">
                                                 <i
                                                    class="fw-normal fst-normal lh-1"
-                                                   th:text="${' ' +
-																		item.rom + 'GB'}"></i>
+                                                   th:text="${item.dienThoai != null ? item.dienThoai.rom+ 'Rom' : 'No Rom'}"></i>
                                              </i>
                                           </div>
                                        </div>
@@ -358,7 +356,8 @@
                                           <button
                                              style="font-size: 1vw"
                                              type="button"
-                                             class="btn btn-danger">
+                                             class="btn btn-danger btn-buy"
+                                             th:value="${item.maSanPham}">
                                              Mua ngay
                                           </button>
                                        </div>
@@ -370,7 +369,7 @@
                                              data-bs-trigger="hover focus"
                                              data-bs-content="Xem thông tin sản phẩm tại đây">
                                              <button
-                                                th:value="${item.name}"
+                                                th:value="${item.maSanPham}"
                                                 style="font-size: 1vw"
                                                 type="button"
                                                 class="btn btn-dark btn-view">
@@ -423,17 +422,20 @@
                                  th:each="item :${sanphams}">
                                  <div class="card pb-4">
                                     <img
-                                       th:src="@{${item.img[0]}}"
+                                       th:src="@{${item.hinhAnh.url}}"
                                        style="max-width: 80%"
                                        class="rounded mx-auto d-block mt-2"
                                        alt="..." />
                                     <div class="card-body">
                                        <h5
-                                          th:text="${item.name}"
+                                          th:text="${item.tenSanPham}"
                                           class="card-title fw-bold lh-1 text-break"
                                           style="font-size: 1.2vw; color: #474c51"></h5>
                                        <h5
-                                          th:text="${item.price}"
+                                          th:text="${item.chiTietNhapHangs != null and item.chiTietNhapHangs.size() > 0
+                                          ? (#numbers.formatDecimal((item.chiTietNhapHangs[0].donGiaNhap
+                                          + item.chiTietNhapHangs[0].chiPhiLuuKho + item.chiTietNhapHangs[0].chiPhiQuanLy)
+                                          * item.chiTietNhapHangs[0].phanTramLoiNhuan, 0, 'COMMA', 2, 'POINT'))+ 'đ' : 'No giá'}"
                                           class="card-title rounded-pill p-1 price"
                                           style="max-width: 20vh; font-size: 1.2vw; color: rgba(255, 255, 255, 0.925); background-color: #cb1c22; text-align: center"></h5>
                                        <div
@@ -445,8 +447,7 @@
                                                 class="fas fa-microchip">
                                                 <i
                                                    class="fw-normal fst-normal lh-1"
-                                                   th:text="${' '+
-																		item.chip}"></i>
+                                                   th:text="${item.dienThoai != null ? item.dienThoai.heDieuHanh + 'Chip': 'No HDH '}"></i>
                                              </i>
                                           </div>
                                           <div class="row pb-2">
@@ -455,8 +456,7 @@
                                                 class="fas fa-memory">
                                                 <i
                                                    class="fw-normal fst-normal lh-1"
-                                                   th:text="${' ' +
-																		item.ram + 'GB'}"></i>
+                                                   th:text="${item.dienThoai != null ? item.dienThoai.ram + 'G': 'NO RAM'}"></i>
                                              </i>
                                           </div>
                                           <div class="row pb-2">
@@ -465,9 +465,7 @@
                                                 class="fas fa-mobile-alt">
                                                 <i
                                                    class="fw-normal fst-normal lh-1"
-                                                   th:text="${' ' +
-																		item.screen +
-																		'inch'}"></i>
+                                                   th:text="${item.dienThoai != null ? item.dienThoai.manHinh+  'inch': 'NO SCREEN'}"></i>
                                              </i>
                                           </div>
                                           <div class="row pb-2">
@@ -476,8 +474,7 @@
                                                 class="fas fa-hdd">
                                                 <i
                                                    class="fw-normal fst-normal lh-1"
-                                                   th:text="${' ' +
-																		item.rom + 'GB'}"></i>
+                                                   th:text="${item.dienThoai != null ? item.dienThoai.rom + 'Rom': 'NO ROM'}"></i>
                                              </i>
                                           </div>
                                        </div>
@@ -489,7 +486,8 @@
                                           <button
                                              style="font-size: 1vw"
                                              type="button"
-                                             class="btn btn-danger">
+                                             class="btn btn-danger btn-buy"
+                                             th:value="${item.maSanPham}">
                                              Mua ngay
                                           </button>
                                        </div>
@@ -501,7 +499,7 @@
                                              data-bs-trigger="hover focus"
                                              data-bs-content="Xem thông tin sản phẩm tại đây">
                                              <button
-                                                th:value="${item.name}"
+                                                th:value="${item.maSanPham}"
                                                 style="font-size: 1vw"
                                                 type="button"
                                                 class="btn btn-dark btn-view">
@@ -546,14 +544,30 @@
             </div>
             <div
                class="toast-body"
-               th:text="${'Xin chào
-                    '+account.lastName+'!'}"></div>
+               th:text="'Xin chào '+${account.lastName}"></div>
          </div>
       </div>
       <!-- footer -->
       <div th:include="user/Footer.html"></div>
    </body>
+
+   <script>
+      document.querySelectorAll('.btn-buy').forEach(function (button) {
+         button.addEventListener('click', function (event) {
+            event.preventDefault();
+            var productId = button.getAttribute('value');
+            $.ajax({
+               url: '/add-to-cart?id=' + productId,
+               type: 'POST',
+               success: function () {
+                  window.location.href = '/cart';
+               },
+            });
+         });
+      });
+   </script>
    <!-- jquery -->
+
    <script
       src="https://code.jquery.com/jquery-3.6.3.js"
       integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
@@ -563,11 +577,30 @@
    <!--header js -->
    <script src="/js/header.js"></script>
    <!-- index js -->
-   <script src="/js/user/index.js"></script>
+   <!-- <script src="/js/user/index.js"></script> -->
    <!-- spslide-js -->
    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
    <!--block script-->
    <script th:inline="javascript">
+      let btnview = document.querySelectorAll('.btn-view');
+      btnview.forEach(function (item) {
+         item.addEventListener('click', function () {
+            let name = item.getAttribute('value');
+
+            let url = '/san-pham/dien-thoai/show?id=' + name;
+            $.ajax({
+               url: url,
+               type: 'GET',
+               success: function (data) {
+                  window.location.href = url;
+               },
+               error: function (data) {
+                  console.log(data);
+               },
+            });
+            // alert(name)
+         });
+      });
       new Splide('#image-carousel', {
          updateOnMove: true,
          focus: 'center',

@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html
+   lang="en"
+   xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <meta
+         http-equiv="X-UA-Compatible"
+         content="IE=edge" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1.0" />
+      <title>Cart</title>
+      <!-- link-css -->
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+      <link
+         rel="stylesheet"
+         href="/css/cart.css" />
+      <link
+         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+         rel="stylesheet"
+         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+         crossorigin="anonymous" />
+      <link
+         rel="stylesheet"
+         href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+      <link
+         rel="stylesheet"
+         href="https://www.w3schools.com/w3css/4/w3.css" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+      <script src="../static/js/oldphones.js"></script>
+   </head>
+   <body class="p-0">
+      <!--Header-->
+      <div th:include="user/header.html"></div>
+      <!---->
+      <div class="css-cssveg">
+         <div class="css-27abj6">
+            <div class="css-bvrx60">
+               <div class="css-u7e60m">
+                  <a
+                     href="/home"
+                     class="css-1s8chay">
+                     <div class="css-1fxfpx3">
+                        <div class="css-1cxxswr">
+                           <div
+                              type="body"
+                              class="css-8qfqut">
+                              Trang chủ
+                           </div>
+                        </div>
+                        <div class="css-1p5nd4x">
+                           <svg
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              size="16"
+                              class="css-26qhcs"
+                              color="placeholder"
+                              height="16"
+                              width="16"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                 d="M8.49976 19.0001L15.4998 12.0001L8.49976 5.00012"
+                                 stroke="#82869E"
+                                 stroke-width="1.5"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round"></path>
+                           </svg>
+                        </div>
+                     </div> </a
+                  ><a
+                     href="#"
+                     disabled=""
+                     class="css-4jp5hh">
+                     <div class="css-1fxfpx3">
+                        <div class="css-1cxxswr">
+                           <div
+                              type="body"
+                              class="css-8qfqut">
+                              Giỏ hàng
+                           </div>
+                        </div>
+                     </div>
+                  </a>
+               </div>
+               <div class="css-117j3zt">
+                  <div class="css-8x68m">
+                     <div class="css-1knbux5">
+                        <div
+                           type="title"
+                           class="att-gio-hang css-112gyp1">
+                           Giỏ hàng
+                        </div>
+                        <button
+                           class="att-delete-all-btn css-tj2ae3"
+                           fdprocessedid="xo352">
+                           Xóa tất cả
+                        </button>
+                     </div>
+                  </div>
+               </div>
+               <div class="css-4cffwv">
+                  <div class="css-8x68m">
+                     <div class="css-1jky165">
+                        <div class="card-body css-0">
+                           <div class="teko-row teko-row-space-between teko-row-middle css-u8zylc">
+                              <div
+                                 class="teko-col css-gr7r8o"
+                                 style="flex: 0 0 4%">
+                                 <label class="css-1arb6mh">
+                                    <div class="css-l24w9c">
+                                       <input
+                                          type="checkbox"
+                                          class="att-uncheck-all-product css-11kbzq0"
+                                          checked="" />
+                                       <div class="checkbox-inner css-rumpju">
+                                          <svg
+                                             fill="none"
+                                             viewBox="0 0 24 24"
+                                             size="12"
+                                             class="css-5ju3er"
+                                             color="white"
+                                             height="12"
+                                             width="12"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                             <path
+                                                d="M5 12.4545L9.375 17L19 7"
+                                                stroke="#82869E"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"></path>
+                                          </svg>
+                                       </div>
+                                    </div>
+                                 </label>
+                              </div>
+                              <div
+                                 class="teko-col css-gr7r8o"
+                                 style="flex: 0 0 96%">
+                                 <div class="teko-row teko-row-space-between teko-row-middle css-1o3gs9x">
+                                    <div class="teko-col teko-col-6 css-gr7r8o">
+                                       <div class="css-1yiwpef">
+                                          <div>
+                                             <div
+                                                type="subtitle"
+                                                class="css-rifsrp">
+                                                CÔNG TY TNHH4TV
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="teko-col teko-col-2 css-okd5mq">
+                                       <div
+                                          type="body"
+                                          class="css-1f0uch">
+                                          Đơn giá
+                                       </div>
+                                    </div>
+                                    <div class="teko-col teko-col-2 css-u0n5ut">
+                                       <div
+                                          type="body"
+                                          class="css-1f0uch">
+                                          Số lượng
+                                       </div>
+                                    </div>
+                                    <div class="teko-col teko-col-2 css-t7prwg">
+                                       <div
+                                          type="body"
+                                          class="css-1f0uch">
+                                          Thành tiền
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <!--                            Kaiwin-->
+                           <li th:each="item : ${cart.chiTietGioHangs}">
+                              <div class="css-xr8qe8">
+                                 <div class="teko-row teko-row-space-between teko-row-middle css-1o3gs9x">
+                                    <div
+                                       class="teko-col css-gr7r8o"
+                                       style="flex: 0 0 4%">
+                                       <label class="css-1arb6mh">
+                                          <div class="css-l24w9c">
+                                             <input
+                                                type="checkbox"
+                                                class="css-11kbzq0"
+                                                checked="" />
+                                             <div class="checkbox-inner css-rumpju">
+                                                <svg
+                                                   fill="none"
+                                                   viewBox="0 0 24 24"
+                                                   size="12"
+                                                   class="css-5ju3er"
+                                                   color="white"
+                                                   height="12"
+                                                   width="12"
+                                                   xmlns="http://www.w3.org/2000/svg">
+                                                   <path
+                                                      d="M5 12.4545L9.375 17L19 7"
+                                                      stroke="#82869E"
+                                                      stroke-width="1.5"
+                                                      stroke-linecap="round"
+                                                      stroke-linejoin="round"></path>
+                                                </svg>
+                                             </div>
+                                          </div>
+                                       </label>
+                                    </div>
+                                    <div
+                                       class="teko-col css-gr7r8o"
+                                       style="flex: 0 0 96%">
+                                       <div class="teko-row teko-row-space-between css-1o3gs9x">
+                                          <div class="teko-col teko-col-6 css-gr7r8o">
+                                             <div class="css-vhnop0">
+                                                <a
+                                                   target="_self"
+                                                   class="css-cbrxda"
+                                                   href="/dien-thoai-di-dong-iphone-14-plus-128gb-purple-mq503vn-a-purple--s220908979?sku=220908979">
+                                                   <div
+                                                      height="80"
+                                                      width="80"
+                                                      class="css-1i7enn7">
+                                                      <img
+                                                         th:src="@{${item.sanPham.hinhAnh.url}}"
+                                                         loading="lazy"
+                                                         decoding="async"
+                                                         alt="product"
+                                                         style="width: 100%; height: 80px" />
+                                                   </div>
+                                                </a>
+                                                <div class="css-yp9swi">
+                                                   <a
+                                                      target="_self"
+                                                      class="css-cbrxda"
+                                                      href="/dien-thoai-di-dong-iphone-14-plus-128gb-purple-mq503vn-a-purple--s220908979?sku=220908979">
+                                                      <div
+                                                         type="body"
+                                                         color="textPrimary"
+                                                         class="css-n52jdu"
+                                                         th:text="${item.sanPham.tenSanPham}"></div>
+                                                   </a>
+                                                   <div
+                                                      type="caption"
+                                                      color="textSecondary"
+                                                      class="css-wnp42j"
+                                                      th:text="'SKU: '+ ${item.sanPham.dienThoai != null ? item.sanPham.dienThoai.getMaDienThoai() : 'No Mã'}"></div>
+                                                   <div
+                                                      type="caption"
+                                                      color="textSecondary"
+                                                      class="css-wnp42j"
+                                                      th:text="'Purple,'+ ${item.sanPham.dienThoai != null ? item.sanPham.dienThoai.rom+ 'G' : 'No Ram'}"></div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="teko-col teko-col-2 css-1ohnjvy">
+                                             <div class="teko-col css-gr7r8o">
+                                                <div class="teko-row teko-row-end teko-row-middle css-1o3gs9x">
+                                                   <span
+                                                      class="product-price__price css-1u7nn1v"
+                                                      th:text="${item.sanPham.chiTietNhapHangs != null and item.sanPham.chiTietNhapHangs.size() > 0
+                                          ? (#numbers.formatDecimal((item.sanPham.chiTietNhapHangs[0].donGiaNhap
+                                          + item.sanPham.chiTietNhapHangs[0].chiPhiLuuKho + item.sanPham.chiTietNhapHangs[0].chiPhiQuanLy)
+                                          * item.sanPham.chiTietNhapHangs[0].phanTramLoiNhuan, 0, 'COMMA', 2, 'POINT'))+ 'đ' : 'No giá'}">
+                                                   </span>
+                                                </div>
+                                                <div class="teko-row teko-row-end teko-row-middle css-1o3gs9x">
+                                                   <del>
+                                                      <span
+                                                         class="product-price__listed-price att-strike-through-display-price css-10zxjrh"
+                                                         th:text="${item.sanPham.chiTietNhapHangs != null and item.sanPham.chiTietNhapHangs.size() > 0
+                                          ? (#numbers.formatDecimal((item.sanPham.chiTietNhapHangs[0].donGiaNhap
+                                          + item.sanPham.chiTietNhapHangs[0].chiPhiLuuKho + item.sanPham.chiTietNhapHangs[0].chiPhiQuanLy)
+                                          * item.sanPham.chiTietNhapHangs[0].phanTramLoiNhuan+ 2000000, 0, 'COMMA', 2, 'POINT'))+ 'đ' : 'No giá'}">
+                                                      </span
+                                                   ></del>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="teko-col teko-col-2 css-gr7r8o">
+                                             <div class="css-1oskuwq">
+                                                <div class="css-2c0axb">
+                                                   <button
+                                                      class="css-1kcvffe decrease"
+                                                      th:value="${item.sanPham.maSanPham}">
+                                                      <span class="css-1orfikq"
+                                                         ><svg
+                                                            fill="none"
+                                                            viewBox="0 0 24 24"
+                                                            size="16"
+                                                            class="css-cpb1o"
+                                                            color="disable"
+                                                            height="16"
+                                                            width="16"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                               fill-rule="evenodd"
+                                                               clip-rule="evenodd"
+                                                               d="M3.25 12C3.25 11.5858 3.58579 11.25 4 11.25H20C20.4142 11.25 20.75 11.5858 20.75 12C20.75 12.4142 20.4142 12.75 20 12.75H4C3.58579 12.75 3.25 12.4142 3.25 12Z"
+                                                               fill="#82869E"></path></svg
+                                                      ></span>
+                                                   </button>
+                                                   <div class="css-ktgpr2">
+                                                      <div
+                                                         height="40"
+                                                         class="wrap-input-number css-1d2ixzd">
+                                                         <div class="rc-input-number">
+                                                            <div class="rc-input-number-input-wrap">
+                                                               <input
+                                                                  autocomplete="off"
+                                                                  role="spinbutton"
+                                                                  aria-valuemin="1"
+                                                                  aria-valuemax="999"
+                                                                  aria-valuenow="1"
+                                                                  step="1"
+                                                                  class="rc-input-number-input"
+                                                                  fdprocessedid="jrltqm"
+                                                                  th:value="${item.soLuong}" />
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                   <button
+                                                      class="css-1i77det increase"
+                                                      th:value="${item.sanPham.maSanPham}"
+                                                      fdprocessedid="lfrng7">
+                                                      <span class="css-1orfikq"
+                                                         ><svg
+                                                            fill="none"
+                                                            viewBox="0 0 24 24"
+                                                            size="16"
+                                                            class="css-g427p8"
+                                                            color="textPrimary"
+                                                            height="16"
+                                                            width="16"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                               fill-rule="evenodd"
+                                                               clip-rule="evenodd"
+                                                               d="M12.75 4C12.75 3.58579 12.4142 3.25 12 3.25C11.5858 3.25 11.25 3.58579 11.25 4V11.25H4C3.58579 11.25 3.25 11.5858 3.25 12C3.25 12.4142 3.58579 12.75 4 12.75H11.25V20C11.25 20.4142 11.5858 20.75 12 20.75C12.4142 20.75 12.75 20.4142 12.75 20V12.75H20C20.4142 12.75 20.75 12.4142 20.75 12C20.75 11.5858 20.4142 11.25 20 11.25H12.75V4Z"
+                                                               fill="#82869E"></path></svg
+                                                      ></span>
+                                                   </button>
+                                                </div>
+                                                <div
+                                                   type="body"
+                                                   class="css-9v7a0r">
+                                                   Xóa
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="teko-col teko-col-2 css-gr7r8o">
+                                             <div class="teko-col css-gr7r8o">
+                                                <div class="teko-row teko-row-end teko-row-middle css-1o3gs9x">
+                                                   <!--                                                            Kaiwin-->
+                                                   <span
+                                                      class="product-price__price css-1u7nn1v"
+                                                      th:text="${item.sanPham.chiTietNhapHangs != null and item.sanPham.chiTietNhapHangs.size() > 0
+                                          ? (#numbers.formatDecimal((item.sanPham.chiTietNhapHangs[0].donGiaNhap
+                                          + item.sanPham.chiTietNhapHangs[0].chiPhiLuuKho + item.sanPham.chiTietNhapHangs[0].chiPhiQuanLy)
+                                          * item.sanPham.chiTietNhapHangs[0].phanTramLoiNhuan, 0, 'COMMA', 2, 'POINT'))+ 'đ' : 'No giá'}"
+                                                      >10.00
+                                                   </span>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </li>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="css-8xcfft">
+                     <div class="css-127zbo8">
+                        <div class="card-header css-0">
+                           <div class="css-1knbux5">
+                              <h6>Khuyến mãi</h6>
+                              <a
+                                 target="_blank"
+                                 rel="noopener noreferrer"
+                                 class="css-gmt3b"
+                                 color="link500"
+                                 id="select-coupon">
+                                 <svg
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    class="css-9w5ue6"
+                                    height="1em"
+                                    width="1em"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                       fill-rule="evenodd"
+                                       clip-rule="evenodd"
+                                       d="M6.19499 3C5.99608 3 5.80532 3.07902 5.66466 3.21967L3.21967 5.66466C3.07902 5.80532 3 5.99608 3 6.19499V11.085C3 11.2839 3.07902 11.4747 3.21967 11.6153L12.3884 20.784C12.6813 21.0769 13.1562 21.0769 13.4491 20.784L17.1166 17.1166L20.784 13.4491C21.0769 13.1562 21.0769 12.6813 20.784 12.3884L11.6153 3.21967C11.4747 3.07902 11.2839 3 11.085 3H6.19499ZM4.5 6.50565L6.50565 4.5H10.7743L19.1931 12.9187L16.0559 16.0559L12.9187 19.1931L4.5 10.7743V6.50565ZM7.86186 9.2514C7.86186 8.65286 8.34707 8.16765 8.94561 8.16765C9.54415 8.16765 10.0294 8.65286 10.0294 9.2514C10.0294 9.84994 9.54415 10.3351 8.94561 10.3351C8.34707 10.3351 7.86186 9.84994 7.86186 9.2514ZM8.94561 6.66765C7.51865 6.66765 6.36186 7.82444 6.36186 9.2514C6.36186 10.6784 7.51865 11.8351 8.94561 11.8351C10.3726 11.8351 11.5294 10.6784 11.5294 9.2514C11.5294 7.82444 10.3726 6.66765 8.94561 6.66765ZM11.3097 12.9996C11.0168 12.7067 10.5419 12.7067 10.249 12.9996C9.95613 13.2925 9.95613 13.7674 10.249 14.0603L12.3884 16.1996C12.6813 16.4925 13.1562 16.4925 13.449 16.1996C13.7419 15.9067 13.7419 15.4319 13.449 15.139L11.3097 12.9996ZM12.694 10.5545C12.9869 10.2616 13.4618 10.2616 13.7547 10.5545L15.8941 12.6939C16.187 12.9868 16.187 13.4616 15.8941 13.7545C15.6012 14.0474 15.1263 14.0474 14.8334 13.7545L12.694 11.6151C12.4011 11.3223 12.4011 10.8474 12.694 10.5545Z"
+                                       fill="#82869E"></path>
+                                 </svg>
+                                 &nbsp; Chọn hoặc nhập khuyến mãi</a
+                              >
+                           </div>
+                        </div>
+                        <div class="card-body css-0">
+                           <div class="css-twos5s">Đơn hàng chưa đủ điều kiện áp dụng khuyến mãi. Vui lòng mua thêm để áp dụng</div>
+                        </div>
+                     </div>
+                     <div class="css-1pmyljg">
+                        <div class="card-header css-0"><h6>Thanh toán</h6></div>
+                        <div class="card-body css-0">
+                           <div class="att-checkout-summary css-2wrijr">
+                              <div class="teko-row teko-row-space-between teko-row-top css-u3rm9s">
+                                 <div class="teko-col css-gr7r8o">
+                                    <div
+                                       type="subtitle"
+                                       class="css-avn4po">
+                                       Tổng tạm tính
+                                    </div>
+                                 </div>
+                                 <div
+                                    class="teko-col css-gr7r8o"
+                                    style="text-align: right">
+                                    <div
+                                       type="subtitle"
+                                       color=""
+                                       class="css-1mc3imd"
+                                       th:text="${#numbers.formatDecimal(totalAmount, 0, 'COMMA', 2, 'POINT')}">
+                                       10.00
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="teko-row teko-row-space-between teko-row-top css-u3rm9s">
+                                 <div class="teko-col css-gr7r8o">
+                                    <div
+                                       type="subtitle"
+                                       class="css-avn4po">
+                                       Thành tiền
+                                    </div>
+                                 </div>
+                                 <div
+                                    class="teko-col css-gr7r8o"
+                                    style="text-align: right">
+                                    <div
+                                       type="subtitle"
+                                       color=""
+                                       class="css-1mc3imd">
+                                       <span
+                                          color="primary500"
+                                          class="att-final-price css-1hkl6un"
+                                          th:text="${#numbers.formatDecimal(totalAmount, 0, 'COMMA', 2, 'POINT')}"
+                                          >10.00
+                                       </span>
+                                    </div>
+                                    <div
+                                       type="caption"
+                                       color="textSecondary"
+                                       class="css-cc3y4f">
+                                       (Đã bao gồm VAT)
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="card-footer css-0">
+                           <button
+                              class="css-zx0x0o btnThanhToan"
+                              fdprocessedid="31zj7f"
+                              onclick="thanhToan()">
+                              THANH TOÁN<span class="help">Bạn cần đăng nhập để tiếp tục</span>
+                           </button>
+                        </div>
+                     </div>
+                     <div class="cartInlineBox"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="mc-bots">
+         <div class="mc-brow clearfix">
+            <div class="mc-bcoll mc-bco1">
+               <div class="mc-bhds">
+                  <h3>Tư vấn miễn phí</h3>
+                  <h4>Tổng đài <span>18006601</span> gọi để nghe tư vấn nhanh, cuộc gọi miễn phí</h4>
+               </div>
+
+               <div
+                  id="root-comment"
+                  data-title="may-tinh-xach-tay"
+                  data-modulid="4"
+                  data-total="0">
+                  <div class="fpt-comment">
+                     <div class="">
+                        <div class="card card-md user-feedback">
+                           <div class="card-title">
+                              <h3 class="h5 heading">Hỏi &amp; Đáp</h3>
+                           </div>
+                           <div class="card-body">
+                              <div class="user-form">
+                                 <form>
+                                    <div class="form-group">
+                                       <textarea
+                                          name="newContent"
+                                          class="form-input form-input-lg"
+                                          rows="3"
+                                          placeholder="Nhập nội dung bình luận (tiếng Việt có dấu)..."></textarea>
+                                       <button
+                                          type="submit"
+                                          class="btn btn-primary btn-lg">
+                                          GỬI BÌNH LUẬN
+                                       </button>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="mc-bcoll mc-bco2">
+               <div class="mc-sbr">
+                  <h3>Giới thiệu về máy đổi trả tại FPT Shop</h3>
+                  <p><strong>Máy đổi trả</strong> là những Điện thoại , Máy tính bảng, Laptop được bán ra tại FPT Shop, miễn phí đổi sản phẩm tương đương trong 30 ngày đầu tiên nếu sản phẩm có lỗi nhà sản xuất.</p>
+                  <p><strong>FPT Shop</strong> chỉ thu lại những sản phẩm được bán ra tại FPT Shop, không thu mua lại các sản phẩm nơi khác. Vì vậy, các sản phẩm đều là hàng chính hãng và có chất lượng tốt nhất.</p>
+                  <p>
+                     Tham khảo chi tiết chính sách máy đổi trả
+                     <a
+                        href="/ho-tro/chinh-sach-doi-san-pham#csdtmc"
+                        target="_blank"
+                        >tại đây</a
+                     >.
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+   <script>
+      function thanhToan() {
+         // Thực hiện yêu cầu POST đến đường dẫn "/checkout"
+         var xhr = new XMLHttpRequest();
+         xhr.open('POST', '/checkout', true);
+         xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+               // Xử lý phản hồi từ server (nếu cần)
+               // Chuyển hướng đến trang hoàn thành thanh toán
+               window.location.href = '../public/Home.html';
+            }
+         };
+         xhr.send();
+      }
+   </script>
+
+   <script>
+      document.querySelectorAll('.increase').forEach(function (button) {
+         button.addEventListener('click', function (event) {
+            event.preventDefault();
+            var productId = button.getAttribute('value');
+            $.ajax({
+               url: '/increase?id=' + productId,
+               type: 'POST',
+               success: function () {
+                  location.reload();
+               },
+            });
+         });
+      });
+   </script>
+
+   <script>
+      document.querySelectorAll('.decrease').forEach(function (button) {
+         button.addEventListener('click', function (event) {
+            event.preventDefault();
+            var productId = button.getAttribute('value');
+            $.ajax({
+               url: '/decrease?id=' + productId,
+               type: 'POST',
+               success: function () {
+                  location.reload();
+               },
+            });
+         });
+      });
+   </script>
+</html>

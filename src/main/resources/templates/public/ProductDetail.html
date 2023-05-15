@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html
+   lang="en"
+   xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <meta
+         http-equiv="X-UA-Compatible"
+         content="IE=edge" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1.0" />
+      <title>Chi Tiết Sản Phẩm</title>
+
+      <link
+         rel="shortcut icon"
+         href="/img/icon-login.png" />
+      <!-- file css -->
+      <link
+         rel="stylesheet"
+         href="/css/index.css" />
+      <!-- file css -->
+      <!-- <link rel="stylesheet" href="/css/home.css" /> -->
+      <!-- icon awesome -->
+      <link
+         rel="stylesheet"
+         href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
+      <!-- spslide-css -->
+      <style>
+         .product-image {
+            width: 100%;
+            height: auto;
+            /*box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);*/
+            transition: transform 0.2s ease-in-out;
+         }
+
+         .product-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+         }
+      </style>
+
+      <link
+         rel="stylesheet"
+         href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
+   </head>
+
+   <body>
+      <!-- header -->
+      <div th:include="user/header.html"></div>
+      <div class="container">
+         <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+               <li class="breadcrumb-item"><a href="/home">Home</a></li>
+               <li
+                  class="breadcrumb-item"
+                  th:each="item : ${breadcrumb}">
+                  <a
+                     th:href="@{${item.link}}"
+                     th:text="${item.name}"></a>
+               </li>
+            </ol>
+         </nav>
+      </div>
+
+      <!--//hiện thông tin chi tiết của sản phẩm bao gồm họ tên , hình ảnh và giá-->
+      <div class="container content">
+         <div class="row">
+            <div class="col-6">
+               <h3
+                  class="font-weight-bold"
+                  th:text="${product.tenSanPham}"></h3>
+               <br />
+
+               <!--           thêm hình ảnh cửa product vào-->
+               <img
+                  th:src="@{${product.hinhAnh.url}}"
+                  style="width: 400px !important; height: 400px !important"
+                  class="rounded mx-auto d-block mt-2 img product-image"
+                  alt="..." />
+            </div>
+            <div class="col-6">
+               <h4
+                  class="price font-weight-bold"
+                  style="color: #cf1313; font-size: 32px; margin-left: 10px">
+                  <span
+                     th:text="${product.chiTietNhapHangs != null and product.chiTietNhapHangs.size() > 0
+           ? (#numbers.formatDecimal(((product.chiTietNhapHangs[0].donGiaNhap * (1 + product.chiTietNhapHangs[0].phanTramLoiNhuan))
+             + product.chiTietNhapHangs[0].chiPhiLuuKho + product.chiTietNhapHangs[0].chiPhiQuanLy), 0, 'COMMA', 2, 'POINT')).replace('.00', '') + ' đ'
+           : 'Đang cập nhật'}"></span>
+
+                  <span
+                     class="original-price"
+                     style="text-decoration: line-through; color: gray; margin-left: 10px; font-size: 24px"
+                     th:text="${product.chiTietNhapHangs != null and product.chiTietNhapHangs.size() > 0
+                ? (#numbers.formatDecimal(((product.chiTietNhapHangs[0].donGiaNhap * (1 + product.chiTietNhapHangs[0].phanTramLoiNhuan))
+                    + product.chiTietNhapHangs[0].chiPhiLuuKho + product.chiTietNhapHangs[0].chiPhiQuanLy) * 1.2, 0, 'COMMA', 0, 'POINT')).replace('.00', '') + ' VND'
+                : 'Đang cập nhật'}"></span>
+               </h4>
+               <div
+                  th:include="public/promotion.html"
+                  style="width: 100%"></div>
+               <br />
+
+               <!--            // viết cho tôi 3 button 1 button nằm trên cùng là mua ngay 2 -->
+               <!--            button nằm dưới là mua trả góp và mua trả góp qua thẻ 2 button nằm dưới nằm cùng 1 hàng-->
+               <div class="text-center">
+                  <div class="row">
+                     <!-- button mua ngay -->
+                     <div class="col">
+                        <button
+                           class="btn btn-primary btnBuyCard"
+                           onclick=""
+                           data-bs-toggle="modal"
+                           data-bs-target="#exampleModal"
+                           style="width: 80%; background: #cb1c22">
+                           Mua ngay <i class="fas fa-shopping-cart"></i>
+                        </button>
+                     </div>
+                  </div>
+                  <!--                <div class="row">-->
+                  <!--                    <div class="col-6">-->
+                  <!--                        &lt;!&ndash; button tra gop 0% &ndash;&gt;-->
+                  <!--                        <button class="btn btn-primary" th:if="${account != null}" style="width: 100%;background: #0664f9">-->
+                  <!--                            Trả góp 0% <i class="fas fa-shopping-cart"></i>-->
+                  <!--                        </button>-->
+                  <!--                    </div>-->
+                  <!--                    <div class="col-6">-->
+                  <!--                        &lt;!&ndash; button tra gop qua the &ndash;&gt;-->
+                  <!--                        <button class="btn btn-primary" th:if="${account != null}" style="width: 100%;background: #0664f9">-->
+                  <!--                            Trả góp qua thẻ <i class="fas fa-shopping-cart"></i>-->
+                  <!--                        </button>-->
+                  <!--                    </div>-->
+                  <!--                </div>-->
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!--    // viết thông tin chi tiết cyar sản phẩm-->
+      <div class="row mt-5">
+         <div class="col-12">
+            <h3
+               class="text-center font-weight-bold"
+               style="font-size: 30px; color: red">
+               Thông tin chi tiết
+            </h3>
+
+            <div class="row">
+               <div class="col-6">
+                  <table class="table table-striped">
+                     <tbody>
+                        <tr>
+                           <th scope="row">Tên sản phẩm</th>
+                           <td th:text="${product.tenSanPham}"></td>
+                        </tr>
+                        <tr>
+                           <th scope="row">Loại Sản Phẩm</th>
+                           <td th:text="${product.loaiSanPham.tenLoaiSanPham}"></td>
+                        </tr>
+                        <tr>
+                           <th scope="row">Thương hiệu</th>
+                           <td th:text="${product.thuongHieu.tenThuongHieu}"></td>
+                        </tr>
+                        <tr>
+                           <th scope="row">Xuất xứ</th>
+                           <td>Việt Nam</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <div class="col-6">
+                  <table class="table table-striped">
+                     <tbody>
+                        <tr>
+                           <th scope="row">Bảo hành</th>
+                           <td>2 năm</td>
+                        </tr>
+                        <tr>
+                           <th scope="row">Bộ nhớ ngoài</th>
+                           <td th:text="${product.dienThoai.getRam()}"></td>
+                        </tr>
+                        <tr>
+                           <th scope="row">Bộ nhớ trong</th>
+                           <td th:text="${product.dienThoai.getRom()}"></td>
+                        </tr>
+                        <tr>
+                           <th scope="row">Màn hình</th>
+                           <td th:text="${product.dienThoai.manHinh}"></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+
+         <!-- khuyến mãi hot-->
+         <div class="container mt-4">
+            <div class="row">
+               <div class="col shadow p-3 mb-5 bg-body rounded">
+                  <div class="row">
+                     <div class="d-flex m-0">
+                        <h2
+                           class="fs-5"
+                           style="color: #212529; font-weight: 600; float: left">
+                           CÁC SẢN PHẨM KHÁC
+                        </h2>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <section
+                        id="image-carousel-dienthoainoibac"
+                        class="splide"
+                        aria-label="Beautiful Images">
+                        <div class="splide__track pb-4">
+                           <ul class="splide__list">
+                              <li
+                                 class="splide__slide"
+                                 th:each="item :${sanphams}">
+                                 <div class="card pb-4">
+                                    <img
+                                       th:src="@{${item.hinhAnh.url}}"
+                                       style="max-width: 80%"
+                                       class="rounded mx-auto d-block mt-2"
+                                       alt="..." />
+                                    <div class="card-body">
+                                       <h5
+                                          th:text="${item.tenSanPham}"
+                                          class="card-title fw-bold lh-1 text-break"
+                                          style="font-size: 1.2vw; color: #474c51"></h5>
+                                       <h5
+                                          th:text="${item.chiTietNhapHangs != null and item.chiTietNhapHangs.size() > 0
+           ? (#numbers.formatDecimal(((item.chiTietNhapHangs[0].donGiaNhap * (1 + item.chiTietNhapHangs[0].phanTramLoiNhuan))
+             + item.chiTietNhapHangs[0].chiPhiLuuKho + item.chiTietNhapHangs[0].chiPhiQuanLy), 0, 'COMMA', 2, 'POINT')).replace('.00', '') + 'đ'
+           : 'Đang cập nhật'}"
+                                          class="card-title rounded-pill p-1 price"
+                                          style="max-width: 20vh; font-size: 1.2vw; color: rgba(255, 255, 255, 0.925); background-color: #cb1c22; text-align: center"></h5>
+                                       <div
+                                          class="row shadow-sm p-0 m-0 bg-body rounded"
+                                          style="margin: 0px 0px !important; padding: 1rem 0.5rem !important">
+                                          <div class="row pb-2">
+                                             <i
+                                                style="color: #6c757d; cursor: help; font-size: 1vw"
+                                                class="fas fa-microchip">
+                                                <if
+                                                   class="fw-normal fst-normal lh-1"
+                                                   th:text="${item.dienThoai != null ? item.dienThoai.heDieuHanh + 'Chip': 'No HDH '}"></if>
+                                             </i>
+                                          </div>
+                                          <div class="row pb-2">
+                                             <i
+                                                style="color: #6c757d; cursor: help; font-size: 1vw"
+                                                class="fas fa-memory">
+                                                <i
+                                                   class="fw-normal fst-normal lh-1"
+                                                   th:text="${item.dienThoai != null ? item.dienThoai.ram + 'G': 'NO RAM'}"></i>
+                                             </i>
+                                          </div>
+                                          <div class="row pb-2">
+                                             <i
+                                                style="color: #6c757d; cursor: help; font-size: 1vw"
+                                                class="fas fa-mobile-alt">
+                                                <i
+                                                   class="fw-normal fst-normal lh-1"
+                                                   th:text="${item.dienThoai != null ? item.dienThoai.manHinh+  'inch': 'NO SCREEN'}"></i>
+                                             </i>
+                                          </div>
+                                          <div class="row pb-2">
+                                             <i
+                                                style="color: #6c757d; cursor: help; font-size: 1vw"
+                                                class="fas fa-hdd">
+                                                <i
+                                                   class="fw-normal fst-normal lh-1"
+                                                   th:text="${item.dienThoai != null ? item.dienThoai.rom + 'Rom': 'NO ROM'}"></i>
+                                             </i>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div
+                                       class="d-flex justify-content-center pb-3 m-0 position-absolute top-100 start-50 translate-middle w-100 bg-body rounded"
+                                       id="block-bottom-card">
+                                       <div class="col-6 align-items-center text-center justify-content-center">
+                                          <button
+                                             style="font-size: 1vw"
+                                             type="button"
+                                             class="btn btn-danger">
+                                             Mua ngay
+                                          </button>
+                                       </div>
+                                       <div class="col-6">
+                                          <span
+                                             class="d-inline-block"
+                                             tabindex="0"
+                                             data-bs-toggle="popover"
+                                             data-bs-trigger="hover focus"
+                                             data-bs-content="Xem thông tin sản phẩm tại đây">
+                                             <button
+                                                th:value="${item.maSanPham}"
+                                                style="font-size: 1vw"
+                                                type="button"
+                                                class="btn btn-dark btn-view">
+                                                Xem chi tiết
+                                             </button>
+                                          </span>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </li>
+                           </ul>
+                        </div>
+                     </section>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- toast message login -->
+      <div
+         class="position-fixed top-0 end-0 p-3"
+         style="z-index: 1000"
+         th:if="${account != null}">
+         <div
+            id="liveToast"
+            class="toast show"
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true">
+            <div class="toast-header">
+               <img
+                  src="/img/icon-login.png"
+                  class="rounded me-2"
+                  alt="..."
+                  style="max-width: 10%" />
+               <strong class="me-auto">Đăng nhập thành công</strong> <small>1 mins ago</small>
+               <button
+                  type="button"
+                  class="btn-close close-toast"
+                  data-bs-dismiss="toast"
+                  aria-label="Close"></button>
+            </div>
+            <div
+               class="toast-body"
+               th:text="${'Xin chào
+                    '+account.lastName+'!'}"></div>
+         </div>
+      </div>
+      <!-- footer -->
+      <div th:include="user/footer.html"></div>
+   </body>
+   <!-- jquery -->
+   <script
+      src="https://code.jquery.com/jquery-3.6.3.js"
+      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+      crossorigin="anonymous"></script>
+   <!-- swiper slide -->
+   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+   <!--header js -->
+   <script src="/js/header.js"></script>
+   <script
+      type="text/javascript"
+      th:src="@{/js/SanPham.js}"></script>
+   <!-- spslide-js -->
+   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+   <!--block script-->
+   <script th:inline="javascript">
+      new Splide('#image-carousel-dienthoainoibac', {
+         updateOnMove: true,
+         focus: 'center',
+         perPage: 4,
+         perMove: 1,
+         focus: 0,
+         gap: '0.5em',
+         omitEnd: true,
+      }).mount();
+
+      $('.close-toast').click(function () {
+         $('.toast').toast('hide');
+      });
+   </script>
+</html>

@@ -25,4 +25,19 @@ public class LoaiSanPham {
     @OneToMany(mappedBy = "loaiSanPham")
     private List<SanPham> sanPhams;
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("LoaiSanPham{");
+        sb.append("maLoaiSanPham=").append(maLoaiSanPham);
+        sb.append(", tenLoaiSanPham='").append(tenLoaiSanPham).append('\'');
+        sb.append(", sanPhams=");
+        if (sanPhams != null) {
+            sb.append(sanPhams.size());
+        } else {
+            sb.append("null");
+        }
+        sb.append('}');
+        return sb.toString();
+    }
 }

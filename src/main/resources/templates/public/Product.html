@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html
+   lang="en"
+   xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <meta
+         http-equiv="X-UA-Compatible"
+         content="IE=edge" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1.0" />
+      <title>Sản phẩm</title>
+
+      <link
+         rel="shortcut icon"
+         href="/img/icon-login.png" />
+
+      <!-- file css -->
+      <link
+         rel="stylesheet"
+         href="/css/product.css" />
+      <!-- icon awesome -->
+      <link
+         rel="stylesheet"
+         href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
+      <!-- animate css -->
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+      <!-- spslide-css -->
+      <link
+         rel="stylesheet"
+         href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
+   </head>
+
+   <body>
+      <style>
+         .splide__slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+         }
+      </style>
+      <!-- header -->
+      <div th:include="user/header.html"></div>
+      <!-- breadcrumb -->
+      <div class="container">
+         <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+               <li class="breadcrumb-item"><a href="/home">Home</a></li>
+               <li class="breadcrumb-item">
+                  <a
+                     th:href="@{${href}}"
+                     th:text="${breadcrumb}"></a>
+               </li>
+            </ol>
+         </nav>
+      </div>
+      <!-- slide -->
+      <div class="container mt-4 slide">
+         <swiper-container
+            class="mySwiper"
+            pagination="true"
+            pagination-clickable="true"
+            navigation="true"
+            space-between="30"
+            centered-slides="true"
+            autoplay-delay="2500"
+            autoplay-disable-on-interaction="false">
+            <swiper-slide>
+               <img
+                  src="https://images.fpt.shop/unsafe/fit-in/1200x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/2/17/638122418914846270_F-C1_1200x300@2x.png"
+                  alt="" />
+            </swiper-slide>
+            <swiper-slide>
+               <img
+                  src="https://images.fpt.shop/unsafe/fit-in/1200x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/2/1/638108673553993107_F-C1_1200x300@2x.png"
+                  alt="" />
+            </swiper-slide>
+            <swiper-slide>
+               <img
+                  src="https://images.fpt.shop/unsafe/fit-in/1200x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/2/23/638127484687826549_F-C1_1200x300.png"
+                  alt="" />
+            </swiper-slide>
+            <swiper-slide>
+               <img
+                  src="https://images.fpt.shop/unsafe/fit-in/1200x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/1/31/638108014497018540_F-C1_1200x300-1.jpg"
+                  alt="" />
+            </swiper-slide>
+            <swiper-slide>
+               <img
+                  src="https://images.fpt.shop/unsafe/fit-in/1200x300/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/2/15/638120822477712377_F-C1_1200x300.png"
+                  alt="" />
+            </swiper-slide>
+         </swiper-container>
+      </div>
+      <!-- toast message login -->
+      <div
+         class="position-fixed top-0 end-0 p-3"
+         style="z-index: 1000"
+         th:if="${account != null}">
+         <div
+            id="liveToast"
+            class="toast show"
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true">
+            <div class="toast-header">
+               <img
+                  src="/img/icon-login.png"
+                  class="rounded me-2"
+                  alt="..."
+                  style="max-width: 10%" />
+               <strong class="me-auto">Đăng nhập thành công</strong> <small>1 mins ago</small>
+               <button
+                  type="button"
+                  class="btn-close close-toast"
+                  data-bs-dismiss="toast"
+                  aria-label="Close"></button>
+            </div>
+            <div
+               class="toast-body"
+               th:text="${'Xin chào '+account.lastName+'!'}"></div>
+         </div>
+      </div>
+      <!-- content -->
+      <div class="container mt-4 content">
+         <div class="row">
+            <!-- fillter -->
+            <div class="col-3">
+               <!-- hãng sản xuất -->
+               <div class="row">
+                  <div class="container">
+                     <div class="row justify-content-md-end">
+                        <span class="fw-bold">Hãng sản xuất</span>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              class="fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-hsx-all"
+                              checked />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-hsx-all"
+                              >Tất cả</label
+                           >
+                        </div>
+                        <div class="col">
+                           <input
+                              data-brand="Apple"
+                              class="cb-item-hsx fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-hsx-apple" />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-hsx-apple"
+                              >Apple</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              data-brand="Samsung"
+                              class="cb-item-hsx fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-hsx-samsung" />
+                           <label
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-hsx-samsung"
+                              >Samsung</label
+                           >
+                        </div>
+                        <div class="col">
+                           <input
+                              data-brand="Oppo"
+                              class="cb-item-hsx fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-hsx-oppo" />
+                           <label
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-hsx-oppo"
+                              >Oppo</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              data-brand="Xiaomi"
+                              class="cb-item-hsx fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-hsx-xiaomi" />
+                           <label
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-hsx-xiaomi"
+                              >Xiaomi</label
+                           >
+                        </div>
+                        <div class="col">
+                           <input
+                              data-brand="Vivo"
+                              class="cb-item-hsx fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-hsx-vivo" />
+                           <label
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-hsx-vivo"
+                              >Vivo</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              data-brand="asus"
+                              class="cb-item-hsx fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-hsx-asus" />
+                           <label
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-hsx-asus"
+                              >Asus</label
+                           >
+                        </div>
+                        <div class="col">
+                           <input
+                              data-brand="nokia"
+                              class="cb-item-hsx fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-hsx-nokia" />
+                           <label
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-hsx-nokia"
+                              >Nokia</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              data-brand="masstel"
+                              class="cb-item-hsx fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="5" />
+                           <label
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="5"
+                              >Masstel</label
+                           >
+                        </div>
+                        <div class="col">
+                           <input
+                              data-brand="Realme"
+                              class="cb-item-hsx fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="6" />
+                           <label
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="6"
+                              >Realme</label
+                           >
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- Mức giá -->
+               <div class="row">
+                  <div class="container">
+                     <div class="row justify-content-md-end">
+                        <span class="fw-bold">Mức giá</span>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              class="fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-price-all"
+                              checked />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-price-all"
+                              >Tất cả</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              data-price="0-2"
+                              class="cb-item-price fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-price-0tr" />
+                           <label
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-price-0tr"
+                              >Dưới 2 triệu</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              data-price="2-4"
+                              class="cb-item-price fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-price-2tr" />
+                           <label
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-price-2tr"
+                              >Từ 2 - 4 triệu</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              data-price="4-7"
+                              class="cb-item-price fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-price-4tr" />
+                           <label
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-price-4tr"
+                              >Từ 4 - 7 triệu</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              data-price="7-13"
+                              class="cb-item-price fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-price-7tr" />
+                           <label
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-price-7tr"
+                              >Từ 7 - 13 triệu</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              data-price="13-50"
+                              class="cb-item-price fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-price-13tr" />
+                           <label
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-price-13tr"
+                              >Trên 13 triệu</label
+                           >
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- tính năng đặc biệt-->
+               <div class="row">
+                  <div class="container">
+                     <div class="row justify-content-md-end">
+                        <span class="fw-bold">Tính năng đặc biệt</span>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              class="fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-tndb-all"
+                              checked />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-tndb-all"
+                              >Tất cả</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              data-tndb="Bảo mật vân tay"
+                              class="fs-1 cb-item-tndb"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-tndb-vantay" />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-tndb-vantay"
+                              >Bảo mật vân tay</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              data-tndb="Nhận diện khuôn mặt"
+                              class="fs-1 cb-item-tndb"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-tndb-faceid" />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-tndb-faceid"
+                              >Nhận diện khuôn mặt</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              data-tndb="Chống bụi & nước"
+                              class="fs-1 cb-item-tndb"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-tndb-khangnuoc" />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-tndb-khangnuoc"
+                              >Chống bụi & nước</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              data-tndb="Hỗ trợ 5G"
+                              class="fs-1 cb-item-tndb"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-tndb-5g" />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-tndb-5g"
+                              >Hỗ trợ 5G</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              data-tndb="Sạc không dây"
+                              class="fs-1 cb-item-tndb"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-tndb-kday" />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-tndb-kday"
+                              >Sạc không dây</label
+                           >
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- màn hình-->
+               <div class="row">
+                  <div class="container">
+                     <div class="row justify-content-md-end">
+                        <span class="fw-bold">Màn hình</span>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              class="fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-screen-all" />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-screen-all"
+                              >Tất cả</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              class="fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-screen-5inch" />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-screen-5inch"
+                              >Màn hình nhỏ dưới 5.0inch</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              class="fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-screen-6inch" />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-screen-6inch"
+                              >Trên 6.0inch</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              class="fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-screen-twoscreen" />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-screen-twoscreen"
+                              >Màn hình gặp</label
+                           >
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- camera-->
+               <div class="row">
+                  <div class="container">
+                     <div class="row justify-content-md-end">
+                        <span class="fw-bold">Camera</span>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              class="fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-camera-all" />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-camera-all"
+                              >Tất cả</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              class="fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-camera-slow" />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-camera-slow"
+                              >Quay phim slow motion</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              class="fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-camera-ai" />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-camera-ai"
+                              >Ai camera</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              class="fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-camera-beautiful" />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-camera-beautiful"
+                              >Hiệu ứng làm đẹp</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              class="fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-camera-zoom" />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-camera-zoom"
+                              >Zoom quang học</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              class="fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-camera-ois" />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-camera-ois"
+                              >Chống rung ois</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              class="fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-camera-macro" />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-camera-macro"
+                              >Chụp macro</label
+                           >
+                        </div>
+                     </div>
+                     <div class="row justify-content-md-end p-2">
+                        <div class="col">
+                           <input
+                              class="fs-1"
+                              style="max-width: 1rem; max-height: 1.1rem; cursor: pointer"
+                              type="checkbox"
+                              id="cb-camera-fullscreen" />
+                           <label
+                              class=""
+                              style="color: #4d4d4d; line-height: 0.5rem; font-size: 1.1vw; cursor: pointer"
+                              for="cb-camera-fullscreen"
+                              >Chụp góc rộng</label
+                           >
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- product -->
+            <div class="col-9">
+               <div class="d-flex justify-content-start shadow-sm p-2 bg-body rounded">
+                  <div class="col">
+                     <div
+                        class="row"
+                        style="border-bottom: 1px solid #0200003f">
+                        <ul class="list-group list-group-horizontal">
+                           <li
+                              class="list-group-item"
+                              style="border: none !important; padding: 0px 0px !important; padding-left: 16px !important">
+                              <span style="font-size: 1.5vw; font-weight: 600">Điện thoại</span>
+                           </li>
+                           <li
+                              class="list-group-item"
+                              style="border: none !important; padding: 0px 0px !important">
+                              <span style="font-size: 1.5vw; font-weight: 400; color: #6c757d">(320 sản phẩm)</span>
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="row text-center mt-3">
+                        <section
+                           id="image-carousel"
+                           class="splide"
+                           aria-label="Beautiful Images">
+                           <div class="splide__track">
+                              <ul class="splide__list">
+                                 <li class="splide__slide">
+                                    <div
+                                       class="splide__slide__container icon-slide"
+                                       data-icon="Apple">
+                                       <img
+                                          src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2020/8/26/637340490193124614_iPhone-Apple@2x.jpg"
+                                          alt="" />
+                                    </div>
+                                 </li>
+                                 <li class="splide__slide">
+                                    <div
+                                       class="splide__slide__container icon-slide"
+                                       data-icon="Samsung">
+                                       <img
+                                          src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2020/8/26/637340490904217021_Samsung@2x.jpg"
+                                          alt="" />
+                                    </div>
+                                 </li>
+                                 <li class="splide__slide">
+                                    <div
+                                       class="splide__slide__container icon-slide"
+                                       data-icon="Xiaomi">
+                                       <img
+                                          src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/6/2/637582325361253577_Xiaomi@2x.jpg"
+                                          alt="" />
+                                    </div>
+                                 </li>
+                                 <li class="splide__slide">
+                                    <div
+                                       class="splide__slide__container icon-slide"
+                                       data-icon="Vivo">
+                                       <img
+                                          src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2022/8/22/637967768466618842_vivo-icon.jpg"
+                                          alt="" />
+                                    </div>
+                                 </li>
+                                 <li class="splide__slide">
+                                    <div
+                                       class="splide__slide__container icon-slide"
+                                       data-icon="asus">
+                                       <img
+                                          src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/11/22/637732077455069770_Asus@2x.jpg"
+                                          alt="" />
+                                    </div>
+                                 </li>
+                                 <li class="splide__slide">
+                                    <div
+                                       class="splide__slide__container icon-slide"
+                                       data-icon="nokia">
+                                       <img
+                                          src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2020/8/26/637340493755614653_Nokia@2x.jpg"
+                                          alt="" />
+                                    </div>
+                                 </li>
+                                 <li class="splide__slide">
+                                    <div
+                                       class="splide__slide__container icon-slide"
+                                       data-icon="Oppo">
+                                       <img
+                                          src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2020/8/26/637340491304997311_Oppo@2x.jpg"
+                                          alt="" />
+                                    </div>
+                                 </li>
+                                 <li class="splide__slide">
+                                    <div
+                                       class="splide__slide__container icon-slide"
+                                       data-icon="masstel">
+                                       <img
+                                          src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2020/8/26/637340491898901930_Masstel@2x.jpg"
+                                          alt="" />
+                                    </div>
+                                 </li>
+                                 <li class="splide__slide">
+                                    <div
+                                       class="splide__slide__container icon-slide"
+                                       data-icon="Realme">
+                                       <img
+                                          src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2020/8/26/637340491898745716_Realme@2x.jpg"
+                                          alt="" />
+                                    </div>
+                                 </li>
+                                 <li class="splide__slide">
+                                    <div
+                                       class="splide__slide__container icon-slide"
+                                       data-icon="tecno">
+                                       <img
+                                          src="https://images.fpt.shop/unsafe/fit-in/108x40/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2021/10/22/637705137962743415_Tecno@2x.jpg"
+                                          alt="" />
+                                    </div>
+                                 </li>
+                              </ul>
+                           </div>
+                        </section>
+                     </div>
+                     <div class="row showIconClick d-flex justify-content-center d-none"></div>
+                  </div>
+               </div>
+               <div class="d-flex justify-content-start shadow p-4 mb-5 bg-body rounded mt-3">
+                  <div class="col">
+                     <div class="d-flex justify-content-end p-2 m-0">
+                        <div class="col">
+                           <ul
+                              class="list-group list-group-horizontal rounded-3"
+                              style="height: 2rem">
+                              <li
+                                 class="list-group-item border-0 fs-6 pt-1"
+                                 style="color: #8392a5">
+                                 Uư tiên xem:
+                              </li>
+                              <li
+                                 class="list-group-item border-1 fs-6 sort-by-best-seller rounded-start active-sort pt-1"
+                                 style="color: #8392a5; cursor: pointer">
+                                 Bán chạy nhất
+                              </li>
+                              <li
+                                 class="list-group-item border-1 fs-6 sort-by-max-price pt-1"
+                                 style="color: #8392a5; cursor: pointer">
+                                 Gía cao
+                              </li>
+                              <li
+                                 class="list-group-item border-1 fs-6 sort-by-min-price pt-1"
+                                 style="color: #8392a5; cursor: pointer">
+                                 Gía thấp
+                              </li>
+                           </ul>
+                        </div>
+                        <div class="col-2 p-2">
+                           <i
+                              class="fas fa-th"
+                              id="displayth"
+                              style="padding-right: 10px; opacity: 0.8; cursor: pointer"></i>
+                           <i
+                              class="fas fa-list-ul"
+                              id="displaylist"
+                              style="opacity: 0.8; cursor: pointer"></i>
+                        </div>
+                     </div>
+                     <div class="container">
+                        <div class="row align-items-start justify-content-center product">
+                           <div
+                              class="card m-0"
+                              th:each="item :${sanphams}"
+                              style="max-width: 17rem; cursor: pointer; border: none">
+                              <div
+                                 class="card-wrapper m-0"
+                                 th:value="${item.maSanPham}">
+                                 <img
+                                    th:src="@{${item.hinhAnh.url}}"
+                                    style="max-width: 80%"
+                                    class="rounded mx-auto d-block mt-2 img"
+                                    alt="..." />
+                                 <div class="card-body">
+                                    <h5
+                                       th:text="${item.tenSanPham}"
+                                       class="card-title fw-bold lh-1 font-monospace text-break"
+                                       style="font-size: 1.2vw; color: #474c51"></h5>
+                                    <h5
+                                       th:text="${item.chiTietNhapHangs != null and item.chiTietNhapHangs.size() > 0
+                                       ? (#numbers.formatDecimal(((item.chiTietNhapHangs[0].donGiaNhap * (1 + item.chiTietNhapHangs[0].phanTramLoiNhuan))
+                                         + item.chiTietNhapHangs[0].chiPhiLuuKho + item.chiTietNhapHangs[0].chiPhiQuanLy), 0, 'COMMA', 2, 'POINT')).replace('.00', '') + 'đ'
+                                       : 'Đang cập nhật'}"
+                                       class="card-title rounded-pill p-1 price"
+                                       style="max-width: 20vh; font-size: 1.2vw; color: rgba(255, 255, 255, 0.925); background-color: #cb1c22; text-align: center"></h5>
+                                    <div
+                                       class="row shadow-none p-3 mb-5 bg-light rounded"
+                                       style="margin: 0px 0px !important; padding: 1rem 0.5rem !important">
+                                       <div class="row pb-2">
+                                          <i
+                                             style="color: #6c757d; cursor: help; font-size: 1vw"
+                                             class="fas fa-microchip">
+                                             <i
+                                                class="fw-normal fst-normal lh-1"
+                                                th:text="${item.dienThoai != null ? item.dienThoai.heDieuHanh + 'Chip': 'No HDH '}"></i>
+                                          </i>
+                                       </div>
+                                       <div class="row pb-2">
+                                          <i
+                                             style="color: #6c757d; cursor: help; font-size: 1vw"
+                                             class="fas fa-memory">
+                                             <i
+                                                class="fw-normal fst-normal lh-1"
+                                                th:text="${item.dienThoai != null ? item.dienThoai.ram + 'GB': 'NO RAM'}"></i>
+                                          </i>
+                                       </div>
+                                       <div class="row pb-2">
+                                          <i
+                                             style="color: #6c757d; cursor: help; font-size: 1vw"
+                                             class="fas fa-mobile-alt">
+                                             <i
+                                                class="fw-normal fst-normal lh-1"
+                                                th:text="${item.dienThoai != null ? item.dienThoai.manHinh+  'inch': 'NO SCREEN'}"></i>
+                                          </i>
+                                       </div>
+                                       <div class="row pb-2">
+                                          <i
+                                             style="color: #6c757d; cursor: help; font-size: 1vw"
+                                             class="fas fa-hdd">
+                                             <i
+                                                class="fw-normal fst-normal lh-1"
+                                                th:text="${item.dienThoai != null ? item.dienThoai.rom + 'Rom': 'NO ROM'}"></i>
+                                          </i>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="d-flex justify-content-center p-0 m-0">
+                                    <div class="col-6 align-items-center text-center justify-content-center">
+                                       <button
+                                          style="font-size: 1vw"
+                                          type="button"
+                                          class="btn btn-danger">
+                                          Mua ngay
+                                       </button>
+                                    </div>
+                                    <div class="col-6">
+                                       <span
+                                          class="d-inline-block"
+                                          tabindex="0"
+                                          data-bs-toggle="popover"
+                                          data-bs-trigger="hover focus"
+                                          data-bs-content="Xem thông tin sản phẩm tại đây">
+                                          <button
+                                             th:value="${item.maSanPham}"
+                                             style="font-size: 1vw"
+                                             type="button"
+                                             class="btn btn-dark btn-view">
+                                             Xem chi tiết
+                                          </button>
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- footer -->
+      <div th:include="user/footer.html"></div>
+   </body>
+   <!-- swiper slide -->
+   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+   <!--header js -->
+   <script src="/js/header.js"></script>
+   <!-- home js -->
+   <script
+      type="text/javascript"
+      th:src="@{/js/SanPham.js}"></script>
+   <!-- spslide-js -->
+   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+   <!--block script-->
+   <script th:inline="javascript">
+      let ds = [[${ sanphams }]];
+      ds = JSON.stringify(ds);
+      localStorage.setItem("ds", ds);
+
+      $('.close-toast').click(function () {
+        $('.toast').toast('hide');
+      });
+      new Splide('#image-carousel', {
+        updateOnMove: true,
+        focus: 'center',
+        perPage: 7,
+        perMove: 1,
+        focus  : 0,
+        gap:'0.5em',
+        omitEnd: true,
+        fixedWidth : '12.5%',
+      }).mount();
+   </script>
+</html>

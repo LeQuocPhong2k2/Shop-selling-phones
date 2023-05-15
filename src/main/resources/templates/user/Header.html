@@ -30,11 +30,14 @@
    <body>
       <div class="container-fluid header">
          <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container-fluid">
+            <div
+               class="container-fluid"
+               style="background-color: #cd1818">
                <a
                   class="navbar-brand"
-                  href="#">
+                  href="/home">
                   <img
+                     style="max-width: 60%"
                      src="/img/iconFPT.png"
                      alt="" />
                </a>
@@ -51,39 +54,39 @@
                <div
                   class="collapse navbar-collapse"
                   id="navbarSupportedContent">
-                  <form
-                     class="d-flex col-5 m-0"
-                     action="/home/search"
-                     method="GET">
-                     <input
-                        class="form-control m-0"
-                        style="border-radius: 0px; border-bottom-left-radius: 2px; border-top-left-radius: 2px"
-                        type="search"
-                        placeholder="Nhập tên điện thoại, máy tính, phụ kiện... cần tìm"
-                        aria-label="Search"
-                        name="searchVal" />
-                     <button
+                  <input
+                     id="searchVal"
+                     class="form-control m-0 p-1 rounded-pill"
+                     style="border-radius: 0px; border-bottom-left-radius: 2px; border-top-left-radius: 2px"
+                     type="search"
+                     placeholder="Nhập tên điện thoại, máy tính, phụ kiện... cần tìm"
+                     aria-label="Search"
+                     name="searchVal" />
+                  <!-- <button
                         style="display: flex; justify-content: center; align-items: center; border-radius: 0px; border-bottom-right-radius: 2px; border-top-right-radius: 2px"
                         class="btn btn-outline-success"
                         type="submit">
                         <i
                            class="fa fa-search"
                            aria-hidden="true"></i>
-                     </button>
-                  </form>
+                     </button> -->
 
                   <ul
-                     class="navbar-nav m-2 fs-hdmn"
-                     style="display: flex; justify-content: center; align-items: center; max-height: 100%">
-                     <li class="nav-item text-center m-2">
+                     class="navbar-nav fs-hdmn"
+                     style="display: flex; justify-content: center; align-items: center">
+                     <li class="nav-item text-center">
                         <a class="nav-link"
                            ><i
                               class="fa fa-newspaper-o"
                               aria-hidden="true"></i
                         ></a>
-                        <a class="nav-link fw-normal lh-1">Thông tin hay</a>
+                        <a
+                           class="nav-link fw-normal lh-1"
+                           href="/news"
+                           >Thông tin hay</a
+                        >
                      </li>
-                     <li class="nav-item text-center m-2">
+                     <li class="nav-item text-center">
                         <a class="nav-link"
                            ><i
                               class="fa fa-file-text"
@@ -96,7 +99,7 @@
                         >
                      </li>
 
-                     <li class="nav-item text-center m-2">
+                     <li class="nav-item text-center">
                         <a class="nav-link d-flex justify-content-center lh-1 m-0 p-0 mt-0">
                            <i
                               class="fa fa-user-circle-o"
@@ -177,7 +180,7 @@
                            </ul>
                         </div>
                      </li>
-                     <li class="nav-item text-center m-2">
+                     <li class="nav-item text-center">
                         <a class="nav-link"
                            ><i
                               class="fa fa-shopping-cart"

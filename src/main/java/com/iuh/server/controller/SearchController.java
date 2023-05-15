@@ -1,28 +1,36 @@
 package com.iuh.server.controller;
 
-import com.iuh.server.model.entity.Account;
-import com.iuh.server.repository.SanPhamRepository;
-import lombok.RequiredArgsConstructor;
-
 import java.security.Principal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.iuh.server.model.entity.Account;
+import com.iuh.server.service.impl.SanPhamServiceImpl;
+
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/home")
-@RequiredArgsConstructor
-public class HomeCotroller {
+@RequestMapping("/search")
+public class SearchController {
 
-    private final SanPhamRepository repository;
+    @Autowired
+    SanPhamServiceImpl sanPhamServiceImpl;
 
     @RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
-    public ModelAndView home(Principal principal) {
-        ModelAndView modelAndView = new ModelAndView("public/Home.html");
-        modelAndView.addObject("sanphams", repository.findAll());
+    public ModelAndView requestMethodName(HttpServletRequest request, Principal principal) {
+        ModelAndView modelAndView = new ModelAndView("public/Search");
+        String searchVal = request.getParameter("searchVal");
+        if (sanPhamServiceImpl.findByTenSanPhamContaining(searchVal).size() == 0) {
+            modelAndView.addObject("ds", "null");
+        } else {
+            modelAndView.addObject("ds", sanPhamServiceImpl.findByTenSanPhamContaining(searchVal));
+        }
         String userName = null;
         if (principal != null) {
             Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

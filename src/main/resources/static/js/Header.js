@@ -51,11 +51,11 @@ content.addEventListener('mouseover', (ee) => {
    $('.hover-dienthoai').hide();
 });
 
-let dropdownMenuButton = document.getElementById('dropdownMenuButton');
-dropdownMenuButton.addEventListener('click', (ee) => {
-   ee.preventDefault();
-   $('.dropdown-menu').show();
-});
+// let dropdownMenuButton = document.getElementById('dropdownMenuButton');
+// dropdownMenuButton.addEventListener('click', (ee) => {
+//    ee.preventDefault();
+//    $('.dropdown-menu').show();
+// });
 
 $('.dropdown-menu').mouseleave(function () {
    $('.dropdown-menu').fadeOut('slow');
@@ -72,3 +72,26 @@ $('.dropdown-menu').mouseleave(function () {
 //     ShowClickIconPhone();
 //     AjaxFillterBrandPhone();
 // }
+
+let searchVal = document.getElementById('searchVal');
+searchVal.addEventListener('keyup', (e) => {
+   $.ajax({
+      url: '/search',
+      type: 'GET',
+      data: {
+         searchVal: e.target.value,
+      },
+      success: function (data) {
+         // window.location.href = '/search?searchVal=' + e.target.value;
+      },
+   });
+});
+
+// key enter search
+let searchValEnter = document.getElementById('searchVal');
+searchValEnter.addEventListener('keyup', (e) => {
+   if (e.keyCode === 13) {
+      let searchVal = document.getElementById('searchVal').value;
+      window.location.href = '/search?searchVal=' + searchVal;
+   }
+});

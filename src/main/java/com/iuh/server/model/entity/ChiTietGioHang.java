@@ -1,5 +1,7 @@
 package com.iuh.server.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -21,6 +23,7 @@ public class ChiTietGioHang {
     @Id
     @ManyToOne
     @JoinColumn(name = "ma_gio_hang")
+    @JsonBackReference
     private GioHang gioHang;
 
     @Id
